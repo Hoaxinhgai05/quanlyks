@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Contact Us</title>
+  <link rel="stylesheet" href="spa.css">
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <div id="mySidebar" class="sidebar">
+      <a href="#">Home</a>
+      <a href="#">Accommodation</a>
+      <a href="book.html">Booking</a>
+      <a href="#">Services</a>
+      <a href="lienhe..html">Contact Us</a>
+      <a href="dangnhap.html">Login</a>
+      <a href="dangki.html">Signin</a>
+    </div>
+    <div class="logo">Prestige Manor</div>
+    <a href="book.html">
+      <button class="btn-book">BOOK DIRECT</button></a>
+  </header>
+
+  <!-- Booking -->
+
+  <nav class="booking-bar">
+    <div class="booking-title">
+      <h3>BOOK ONLINE</h3>
+      <p>Guaranteed accommodation</p>
+    </div>
+
+    <div class="booking-fields">
+      <div class="field">
+        <label><i class="fa fa-calendar"></i> Check-in</label>
+        <div class="input-wrapper">
+          <input id="checkin" type="text" placeholder="dd/mm/yyyy">
+          <span class="calendar-icon">🗓 </span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label><i class="fa fa-calendar"></i> Check-out</label>
+        <div class="input-wrapper">
+          <input id="checkout" type="text" placeholder="dd/mm/yyyy">
+          <span class="calendar-icon">🗓</span>
+        </div>
+      </div>
+
+      <!-- Guests dropdown -->
+      <div class="guests-dropdown">
+                <label class="field-label">Guests</label>
+
+                <div class="guests-wrapper">
+                    <div class="guests-display" id="guestBox">2 Adults, 0 Children</div>
+
+                    <!-- Popup -->
+                    <div class="guests-popup" id="guestsPopup" style="display:none;">
+                        <div class="room">
+                            <div class="room-header">
+                                <span>Room 1</span>
+                            </div>
+                            <div class="controls">
+                                <div class="control">
+                                    <label>Adults</label>
+                                    <button class="minus">-</button>
+                                    <span class="count">2</span>
+                                    <button class="plus">+</button>
+                                </div>
+                                <div class="control">
+                                    <label>Children</label>
+                                    <button class="minus">-</button>
+                                    <span class="count">0</span>
+                                    <button class="plus">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="add-room" id="addRoomBtn">+ ADD A ROOM</button>
+                        <button class="done" id="doneBtn">DONE</button>
+                    </div>
+                </div>
+
+      </div>
+      <a href="book.html">
+        <button class="btn-find">FIND ROOM</button></a>
+
+  </nav>
+
+
+  <!-- Banner -->
+  <div class="banner-text">
+    <h1>PM SPA</h1>
+  </div>
+  <section class="text">
+    <p>
+      With a luxurious yet intimate, quiet and warm space, PM Spa brings customers a feeling of relaxation from the
+      moment they step in.
+      We pay attention to every detail – from aromatherapy, music, lighting to service quality –
+      all aimed at a relaxing and absolutely safe experience for customers.
+    </p>
+
+    <div class="info-line">
+      <i class="fa-solid fa-clock"></i>
+      <span>⏰ Open: 10:00 - 22:00</span>
+    </div>
+
+    <div class="info-line">
+      <i class="fa-solid fa-location-dot"></i>
+      <span>🚩 Location: 12th floor</span>
+    </div>
+  </section>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <img src="body.jpg" alt="Combo Massage">
+      <div class="service-info">
+        <div class="service-title">Combo Massage</div>
+        <div class="service-price">539.000vnd</div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <img src="foot.jpg" alt="Foot Massage">
+      <div class="service-info">
+        <div class="service-title">Foot Massage</div>
+        <div class="service-price">199.000vnd</div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <img src="acup.jpg" alt="Acupressure Massage">
+      <div class="service-info">
+        <div class="service-title">Acupressure massage</div>
+        <div class="service-price">349.000vnd</div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <img src="facial.jpg" alt="Facial Massage">
+      <div class="service-info">
+        <div class="service-title">Facial Massage</div>
+        <div class="service-price">359.000vnd</div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <img src="her.jpg" alt="Herbal hair wash">
+      <div class="service-info">
+        <div class="service-title">Herbal therapeutic hair wash</div>
+        <div class="service-price">239.000vnd</div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <img src="neck.jpg" alt="Neck & Shoulder Massage">
+      <div class="service-info">
+        <div class="service-title">Neck & shoulder massage</div>
+        <div class="service-price">129.000vnd</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-left">
+      <p class="brand">Prestige Manor</p>
+    </div>
+    <div class="footer-middle">
+      <ul>
+        <li><a href="#">▶ Home</a></li>
+        <li><a href="#">▶ Accommodation</a></li>
+        <li><a href="book.html">▶ Book Direct</a></li>
+        <li><a href="#">▶ PM Restaurant</a></li>
+        <li><a href="spa.html">▶ PM Spa</a></li>
+      </ul>
+    </div>
+    <div class="footer-right">
+      <h3>CONTACT US</h3>
+      <p>▶ Hotline/Zalo: +84 94271</p>
+      <p>▶ Location: Quy Nhon</p>
+    </div>
+  </footer>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="guest.js">
+  </script>
+</body>
+
+</html>

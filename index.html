@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Signin</title>
+    <link rel="stylesheet" href="signin.css">
+</head>
+
+<body>
+    <!-- Nút mở menu -->
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+    <!-- Sidebar menu -->
+    <div id="mySidebar" class="sidebar">
+        <a href="#">Home</a>
+        <a href="#">Accommodation</a>
+        <a href="book.html">Booking</a>
+        <a href="#">Services</a>
+        <a href="lienhe..html">Contact Us</a>
+        <a href="dangnhap.html">Login</a>
+        <a href="dangki.html">Signin</a>
+    </div>
+
+    <!-- Form login -->
+    <div class="signin-box">
+        <h2>Sign in</h2>
+        <form onsubmit="return validateForm()">
+            <div class="form-grid">
+                <input type="text" id="firstname" placeholder="Firstname*" required>
+                <input type="text" id="name" placeholder="Name*" required>
+                <input type="text" id="phone" placeholder="Phone Number*" required>
+                <input type="date" id="date" placeholder="Date of birth*" required>
+                <input type="email" id="email" placeholder="Email*" required>
+                <input type="password" id="password" placeholder="Password*" required>
+            </div>
+            <button type="submit" class="btn-signin">Sign in</button>
+        </form>
+        <p>Đã có tài khoản? <a href="dangnhap.html">Đăng nhập</a></p>
+    </div>
+
+    <script>
+        let menuOpen = false;
+
+    function toggleMenu() {
+      const sidebar = document.getElementById("mySidebar");
+      if (menuOpen) {
+        sidebar.style.width = "0";
+      } else {
+        sidebar.style.width = "250px";
+      }
+      menuOpen = !menuOpen;
+    }
+        function validateForm() {
+            let firstnname = document.getElementById("firstname").value.trim();
+            let name = document.getElementById("name").value.trim();
+            let phone = document.getElementById("phone").value.trim();
+            let date = document.getElementById("date").value.trim();
+            let email = document.getElementByID("email").value.trim();
+            let password = document.getElementById("password").value.trim();
+            if (firstname === "" || name === "" || phone ==="" || date ==="" || email ==="" || password ==="") {
+                alert("Vui lòng nhập Firstname, Name, Phone Number, Date of birth, Email và Password!");
+                return false;
+            }
+            alert("Đăng nhập thành công!");
+            return true;
+        }
+    </script>
+</body>
+
+</html>

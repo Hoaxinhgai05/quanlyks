@@ -1,0 +1,101 @@
+    body {
+      margin: 0;
+      padding: 0;
+      background: url("login.jpg") no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Nút menu (icon 3 gạch) */
+    .menu-btn {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 28px;
+      cursor: pointer;
+      color: white;
+      background: rgba(236, 248, 196, 0.5);
+      padding: 8px 12px;
+      border-radius: 5px;
+      z-index: 1100;
+    }
+
+    /* Sidebar menu ẩn */
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: #6b6d50; /* cam */
+      overflow-x: hidden;
+      transition: 0.3s;
+      padding-top: 60px;
+      z-index: 1000;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px 25px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      background: rgba(254, 255, 240, 0.95);
+    }
+
+    /* Login box */
+    .login-box {
+      width: 420px;
+      margin: 150px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .login-box h2 {
+      margin-bottom: 20px;
+    }
+
+    .login-box input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    /* Nút login */
+    .btn-login {
+      width: 95%;
+      padding: 10px;
+      background: #6b6d50;
+      border: none;
+      cursor: pointer;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .btn-login:hover {
+      background: #6b6d50;
+    }
+
+    p {
+      margin-top: 15px;
+    }
+
+    p a {
+      color: #6b6d50;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    p a:hover {
+      text-decoration: underline;
+    }
