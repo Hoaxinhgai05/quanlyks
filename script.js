@@ -1,104 +1,198 @@
-document.addEventListener("DOMContentLoaded", () => {
-  initBill();
-});
+// =================== BOOK PAGE ===================
 
-// ===== Chọn phòng =====
+// Hàm chọn phòng và hiển thị bill mini ở trang book.html
 function selectRoom(button) {
-  const price = button.getAttribute("data-price");
+  const billSection = document.getElementById("billSection");
+  const billList = document.getElementById("billList");
+  const totalPrice = document.getElementById("totalPrice");
+
   const roomType = button.getAttribute("data-room-type");
-  localStorage.setItem("selectedRoomPrice", price);
-  localStorage.setItem("selectedRoomType", roomType);
+  const price = parseInt(button.getAttribute("data-price"));
 
-  // Default services
-  const defaultServices = [{ name: "Breakfast", price: 0, quantity: 1 }];
-  localStorage.setItem("selectedServices", JSON.stringify(defaultServices));
+  // Lấy số lượng phòng (mặc định = 1)
+  const quantityInput = document.getElementById("roomQuantity");
+  const quantity = parseInt(quantityInput?.value || 1);
 
-  window.location.href = "plans.html";
-}
+  // Tính số ngày giữa checkin và checkout
+  const checkinInput = document.getElementById("checkin");
+  const checkoutInput = document.getElementById("checkout");
+  let days = 1;
 
-// ===== Quản lý dịch vụ =====
-function addService(name, price) {
-  let selectedServices = JSON.parse(localStorage.getItem("selectedServices") || "[]");
-  const idx = selectedServices.findIndex(s => s.name === name);
-  if (idx === -1) selectedServices.push({ name, price, quantity: 1 });
-  else selectedServices[idx].quantity++;
-  localStorage.setItem("selectedServices", JSON.stringify(selectedServices));
-  initBill();
-}
+  if (checkinInput && checkoutInput && checkinInput.value && checkoutInput.value) {
+    const [checkinDay, checkinMonth, checkinYear] = checkinInput.value.split("/").map(Number);
+    const [checkoutDay, checkoutMonth, checkoutYear] = checkoutInput.value.split("/").map(Number);
 
-function updateServiceQuantity(name, delta) {
-  let selectedServices = JSON.parse(localStorage.getItem("selectedServices") || "[]");
-  const service = selectedServices.find(s => s.name === name);
-  if (!service) return;
-  service.quantity = Math.max(1, service.quantity + delta);
-  localStorage.setItem("selectedServices", JSON.stringify(selectedServices));
-  initBill();
-}
+    const checkinDate = new Date(checkinYear, checkinMonth - 1, checkinDay);
+    const checkoutDate = new Date(checkoutYear, checkoutMonth - 1, checkoutDay);
 
-function removeService(name) {
-  let selectedServices = JSON.parse(localStorage.getItem("selectedServices") || "[]");
-  selectedServices = selectedServices.filter(s => s.name !== name);
-  localStorage.setItem("selectedServices", JSON.stringify(selectedServices));
-  initBill();
-}
-
-// ===== Bill =====
-function initBill() {
-  const billItemsDiv = document.getElementById("bill-items");
-  const roomDiv = document.getElementById("roomPrice");
-  const servicesDiv = document.getElementById("servicesPrice");
-  const totalDiv = document.getElementById("totalPrice");
-  if (!billItemsDiv) return;
-
-  const roomPrice = parseInt(localStorage.getItem("selectedRoomPrice")) || 0;
-  const services = JSON.parse(localStorage.getItem("selectedServices") || "[]");
-  const guestInfo = JSON.parse(localStorage.getItem("guestInfo") || '{"rooms":1,"adults":[2],"children":[0]}');
-  const roomCount = guestInfo.rooms || 1;
-
-  // Tính số ngày ở
-  const checkin = document.getElementById("checkin").value;
-  const checkout = document.getElementById("checkout").value;
-  let stayDays = 1;
-  if (checkin && checkout) {
-    const inDate = flatpickr.parseDate(checkin, "d/m/Y");
-    const outDate = flatpickr.parseDate(checkout, "d/m/Y");
-    stayDays = Math.max(1, Math.round((outDate - inDate) / (1000*60*60*24)));
+    const diffTime = checkoutDate - checkinDate;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    days = diffDays > 0 ? diffDays : 1;
   }
 
-  const roomTotal = roomPrice * roomCount * stayDays;
+  // Lưu danh sách phòng vào localStorage
+  let selectedRooms = JSON.parse(localStorage.getItem("selectedRooms")) || [];
+  selectedRooms.push({ roomType, price, quantity, days });
+  localStorage.setItem("selectedRooms", JSON.stringify(selectedRooms));
 
-  let serviceTotal = 0;
-  billItemsDiv.innerHTML = "";
+  // Hiện bill mini
+  if (billSection) billSection.style.display = "block";
+  renderBillMini(selectedRooms, totalPrice, billList);
+}
 
-  services.forEach(s => {
-    const p = document.createElement("p");
-    if (s.name.toLowerCase() === "breakfast") {
-      p.textContent = "Breakfast: Included";
-    } else {
-      const price = s.price * s.quantity;
-      serviceTotal += price;
-      p.textContent = `${s.name} (${s.quantity}): ${price.toLocaleString("vi-VN")} VND`;
+// Hiển thị bill mini trong book.html
+function renderBillMini(selectedRooms, totalPriceElem, billListElem) {
+  if (!billListElem || !totalPriceElem) return;
+  let html = "";
+  let total = 0;
 
-      const plus = document.createElement("button");
-      plus.textContent = "+";
-      plus.onclick = () => updateServiceQuantity(s.name, 1);
-
-      const minus = document.createElement("button");
-      minus.textContent = "−";
-      minus.onclick = () => updateServiceQuantity(s.name, -1);
-
-      const del = document.createElement("button");
-      del.textContent = "🗑";
-      del.onclick = () => removeService(s.name);
-
-      p.appendChild(plus);
-      p.appendChild(minus);
-      p.appendChild(del);
-    }
-    billItemsDiv.appendChild(p);
+  selectedRooms.forEach((r, i) => {
+    const roomTotal = r.price * r.quantity * r.days;
+    html += `<p>${i + 1}. ${r.roomType} × ${r.quantity} room(s) × ${r.days} day(s) = ${roomTotal.toLocaleString()}đ</p>`;
+    total += roomTotal;
   });
 
-  if (roomDiv) roomDiv.textContent = `Room: ${roomPrice} x ${roomCount} x ${stayDays} = ${roomTotal.toLocaleString("vi-VN")} VND`;
-  if (servicesDiv) servicesDiv.textContent = `Services: ${serviceTotal.toLocaleString("vi-VN")} VND`;
-  if (totalDiv) totalDiv.textContent = `Total: ${(roomTotal + serviceTotal).toLocaleString("vi-VN")} VND`;
+  billListElem.innerHTML = html;
+  totalPriceElem.textContent = total.toLocaleString() + "đ";
+  localStorage.setItem("roomTotal", total);
 }
+
+// Khi nhấn "Continue Add Service" → chuyển sang plans.html
+document.addEventListener("DOMContentLoaded", () => {
+  const continueBtn = document.getElementById("continueBtn");
+  if (continueBtn) {
+    continueBtn.addEventListener("click", () => {
+      window.location.href = "plans.html";
+    });
+  }
+
+  // Reset dữ liệu nếu quay lại book.html
+  if (window.location.pathname.includes("book.html")) {
+    localStorage.removeItem("selectedRooms");
+    localStorage.removeItem("roomTotal");
+  }
+});
+
+// =================== PLANS PAGE ===================
+
+// Thêm dịch vụ (ngoại trừ Breakfast)
+function addService(name, price) {
+  if (name === "Breakfast - Included") return;
+
+  let selectedServices = JSON.parse(localStorage.getItem("selectedServices")) || [];
+  let existing = selectedServices.find(s => s.name === name);
+
+  if (existing) {
+    existing.quantity = (existing.quantity || 0) + 1;
+  } else {
+    selectedServices.push({ name, price, quantity: 1 });
+  }
+
+  localStorage.setItem("selectedServices", JSON.stringify(selectedServices));
+  updateBillDisplay();
+}
+
+// Giảm số lượng dịch vụ
+function decreaseService(name) {
+  if (name === "Breakfast - Included") return;
+
+  let selectedServices = JSON.parse(localStorage.getItem("selectedServices")) || [];
+  let existing = selectedServices.find(s => s.name === name);
+
+  if (existing) {
+    existing.quantity--;
+    if (existing.quantity <= 0) {
+      selectedServices = selectedServices.filter(s => s.name !== name);
+    }
+  }
+
+  localStorage.setItem("selectedServices", JSON.stringify(selectedServices));
+  updateBillDisplay();
+}
+
+// Xóa dịch vụ
+function removeService(name) {
+  if (name === "Breakfast - Included") return;
+
+  let selectedServices = JSON.parse(localStorage.getItem("selectedServices")) || [];
+  selectedServices = selectedServices.filter(s => s.name !== name);
+  localStorage.setItem("selectedServices", JSON.stringify(selectedServices));
+  updateBillDisplay();
+}
+
+// =================== BREAKFAST FIX ===================
+
+// Luôn có Breakfast mặc định
+function ensureDefaultBreakfast() {
+  let selectedServices = JSON.parse(localStorage.getItem("selectedServices")) || [];
+  selectedServices = selectedServices.filter(s => s.name !== "Breakfast - Included");
+  selectedServices.unshift({ name: "Breakfast - Included", price: 0, quantity: 1 });
+  localStorage.setItem("selectedServices", JSON.stringify(selectedServices));
+}
+
+// =================== BILL DISPLAY ===================
+
+function updateBillDisplay() {
+  const billItems = document.getElementById("bill-items");
+  const roomPriceElem = document.getElementById("roomPrice");
+  const servicesPriceElem = document.getElementById("servicesPrice");
+  const totalPriceElem = document.getElementById("totalPrice");
+
+  if (!billItems) return;
+
+  let selectedRooms = JSON.parse(localStorage.getItem("selectedRooms")) || [];
+  let selectedServices = JSON.parse(localStorage.getItem("selectedServices")) || [];
+
+  // Đảm bảo Breakfast duy nhất
+  selectedServices = selectedServices.filter((s, i, arr) => i === arr.findIndex(x => x.name === s.name));
+  if (!selectedServices.some(s => s.name === "Breakfast - Included")) {
+    selectedServices.unshift({ name: "Breakfast - Included", price: 0, quantity: 1 });
+  }
+
+  // Render rooms
+  let roomHtml = "<h4>Rooms:</h4>";
+  let totalRoom = 0;
+  selectedRooms.forEach((r, i) => {
+    const roomTotal = r.price * r.quantity * r.days;
+    totalRoom += roomTotal;
+    roomHtml += `<p>${i + 1}. ${r.roomType} × ${r.quantity} × ${r.days} day(s) = ${roomTotal.toLocaleString()}đ</p>`;
+  });
+
+  // Render services
+  let serviceHtml = "<h4>Services:</h4>";
+  let totalService = 0;
+
+  selectedServices.forEach(s => {
+    if (s.name === "Breakfast - Included") {
+      serviceHtml += `<p>Breakfast - Included</p>`;
+    } else {
+      const subtotal = (s.price || 0) * (s.quantity || 0);
+      totalService += subtotal;
+
+      serviceHtml += `
+        <p>
+          ${s.name} - ${s.price.toLocaleString()}đ × ${s.quantity}
+          <button onclick="addService('${s.name}', ${s.price})">+</button>
+          <button onclick="decreaseService('${s.name}')">-</button>
+          <button onclick="removeService('${s.name}')">❌</button>
+        </p>`;
+    }
+  });
+
+  // Hiển thị tổng
+  billItems.innerHTML = roomHtml + serviceHtml;
+  if (roomPriceElem) roomPriceElem.textContent = `Room total: ${totalRoom.toLocaleString()}đ`;
+  if (servicesPriceElem) servicesPriceElem.textContent = `Services total: ${totalService.toLocaleString()}đ`;
+  if (totalPriceElem) totalPriceElem.textContent = `Total: ${(totalRoom + totalService).toLocaleString()}đ`;
+
+  localStorage.setItem("selectedServices", JSON.stringify(selectedServices));
+  localStorage.setItem("finalTotal", totalRoom + totalService);
+}
+
+// Khi tải plans.html thì tự thêm Breakfast
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.querySelector(".bill")) {
+    ensureDefaultBreakfast();
+    updateBillDisplay();
+  }
+});

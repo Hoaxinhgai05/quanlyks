@@ -52,24 +52,32 @@
     <!-- Popup -->
     <div class="guests-popup" id="guestsPopup" style="display:none;">
                     <div class="room">
-                        <div class="room-header">
-                            <span>Room 1</span>
-                        </div>
-                        <div class="controls">
-                            <div class="control">
-                                <label>Adults</label>
-                                <button class="minus">-</button>
-                                <span class="count">2</span>
-                                <button class="plus">+</button>
-                            </div>
-                            <div class="control">
-                                <label>Children</label>
-                                <button class="minus">-</button>
-                                <span class="count">0</span>
-                                <button class="plus">+</button>
-                            </div>
-                        </div>
-                    </div>
+              <div class="room-header">
+                <span>Room 1</span>
+              </div>
+              <div class="controls">
+                <div class="control">
+                  <label>Adults</label>
+                  <button class="minus">-</button>
+                  <span class="count">2</span>
+                  <button class="plus">+</button>
+                </div>
+                <div class="control">
+                  <label>Children</label>
+                  <button class="minus">-</button>
+                  <span class="count">0</span>
+                  <button class="plus">+</button>
+                </div>
+                <div class="control">
+                  <label>Type Room</label>
+                  <select class="room-type">
+                    <option value="Single Room">Single Room</option>
+                    <option value="Twin Room">Twin Room</option>
+                    <option value="VIP Room">VIP Room</option>
+                  </select>
+                </div>
+              </div>
+            </div>
                     <button class="add-room" id="addRoomBtn">+ ADD A ROOM</button>
                     <button class="done" id="doneBtn">DONE</button>
                 </div>
@@ -120,7 +128,6 @@
       <div class="form-group">
         <label>Country</label>
         <select>
-          <option>🇬🇧 United Kingdom</option>
           <option>🇻🇳 Vietnam</option>
           <option>🇺🇸 United States</option>
           <option>🇫🇷 France</option>
@@ -169,9 +176,11 @@
 
   <div class="bank-info" style="display: none;">
     <p><strong>Ngân hàng:</strong> Teckcombank</p>
-    <p><strong>Chủ tài khoản:</strong> CÔNG TY TNHH PRESTIGE MANOR</p>
-    <p><strong>Số tài khoản:</strong> 686868689999</p>
+    <p><strong>Chủ tài khoản:</strong> CÔNG TY TNHH PRESTIGE MANOR (PHẠM THỊ HOA)</p>
+    <p><strong>Số tài khoản:</strong> 9888811112005</p>
     <p><strong>Nội dung:</strong> Tên khách + Mã đặt phòng</p>
+    <p><strong>Quét mã để chuyển khoản nhanh:</strong></p>
+    <img src="QR.jpg" alt="QR Code chuyển khoản" class="qr-image">
   </div>
 </div>
 

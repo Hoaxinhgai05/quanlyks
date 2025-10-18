@@ -9,7 +9,6 @@
 </head>
 
 <body>
- 
   <header class="header">
     <div class="menu-btn" onclick="toggleMenu()">☰</div>
     <div id="mySidebar" class="sidebar">
@@ -22,81 +21,76 @@
     </div>
     <div class="logo">Prestige Manor</div>
   </header>
-  <!-- Booking Bar -->
+
+  <!-- Booking bar (giữ nguyên) -->
   <nav class="booking-bar">
-  <div class="booking-fields">
-            <div class="field">
-                <label><i class="fa fa-calendar"></i> Check-in</label>
-                <div class="input-wrapper">
-                    <input id="checkin" type="text" placeholder="dd/mm/yyyy">
-                    <span class="calendar-icon">🗓 </span>
-                </div>
-            </div>
+    <div class="booking-fields">
+      <div class="field">
+        <label><i class="fa fa-calendar"></i> Check-in</label>
+        <div class="input-wrapper">
+          <input id="checkin" type="text" placeholder="dd/mm/yyyy">
+          <span class="calendar-icon">🗓 </span>
+        </div>
+      </div>
 
-            <div class="field">
-                <label><i class="fa fa-calendar"></i> Check-out</label>
-                <div class="input-wrapper">
-                    <input id="checkout" type="text" placeholder="dd/mm/yyyy">
-                    <span class="calendar-icon">🗓</span>
-                </div>
-            </div>
+      <div class="field">
+        <label><i class="fa fa-calendar"></i> Check-out</label>
+        <div class="input-wrapper">
+          <input id="checkout" type="text" placeholder="dd/mm/yyyy">
+          <span class="calendar-icon">🗓</span>
+        </div>
+      </div>
 
-            <!-- Guests dropdown -->
-            <div class="guests-dropdown">
-  <label class="field-label">Guests</label>
 
-  <div class="guests-wrapper">
-    <div class="guests-display" id="guestBox">2 Adults, 0 Children</div>
-
+      <div class="guests-dropdown">
+        <label>Guests</label>
+        <div class="guests-display" id="guestBox">2 Adults, 0 Children</div>
+      </div>
+    </div>
     <!-- Popup -->
     <div class="guests-popup" id="guestsPopup" style="display:none;">
-                    <div class="room">
-                        <div class="room-header">
-                            <span>Room 1</span>
-                        </div>
-                        <div class="controls">
-                            <div class="control">
-                                <label>Adults</label>
-                                <button class="minus">-</button>
-                                <span class="count">2</span>
-                                <button class="plus">+</button>
-                            </div>
-                            <div class="control">
-                                <label>Children</label>
-                                <button class="minus">-</button>
-                                <span class="count">0</span>
-                                <button class="plus">+</button>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="add-room" id="addRoomBtn">+ ADD A ROOM</button>
-                    <button class="done" id="doneBtn">DONE</button>
-                </div>
+      <div class="room">
+        <div class="room-header">
+          <span>Room 1</span>
+        </div>
+        <div class="controls">
+          <div class="control">
+            <label>Adults</label>
+            <button class="minus">-</button>
+            <span class="count">2</span>
+            <button class="plus">+</button>
+          </div>
+          <div class="control">
+            <label>Children</label>
+            <button class="minus">-</button>
+            <span class="count">0</span>
+            <button class="plus">+</button>
+          </div>
+          <div class="control">
+            <label>Type Room</label>
+            <select class="room-type">
+              <option value="Single Room">Single Room</option>
+              <option value="Twin Room">Twin Room</option>
+              <option value="VIP Room">VIP Room</option>
+            </select>
+          </div>
+        </div>
+      </div>
 
-            </div>
-    </nav>
-
+      <button class="add-room" id="addRoomBtn">+ ADD A ROOM</button>
+      <button class="done" id="doneBtn">DONE</button>
+    </div>
+    </div>
+    </div>
+    </div>
+  </nav>
 
   <section class="select">
     <h2>Extra Services</h2>
   </section>
 
+  <!-- Pick-up -->
   <div class="room-card">
-    <div class="room-top">
-      <div class="room-image">
-        <img src="single.jpg" alt="Single Room">
-      </div>
-      <div class="room-info">
-        <h2>Single Room</h2>
-        <ul>
-          <li>👥 Up to 2 Guests</li>
-          <li>📐 20 m²</li>
-          <li>📶 Wi-Fi</li>
-          <li>❄️ Air conditioning</li>
-        </ul>
-      </div>
-    </div>
-
     <div class="offer-info">
       <div class="offer-header">
         <div class="car-image">
@@ -105,11 +99,7 @@
         <h3 class="offer-title">Pick-up Service</h3>
       </div>
       <ul class="offer-details">
-        <li>Experience luxury from the moment you arrive with our President Package: Luxury vehicle with top-tier
-          comfort and privacy. Professional chauffeur offering smooth, reliable service. Onboard amenities, including
-          water, towels, and Wi-Fi. Personalized welcome to suit your schedule. The perfect start to your premium stay!
-        </li>
-
+        <li>Luxury vehicle with chauffeur and full amenities</li>
       </ul>
       <div class="offer-footer">
         <p class="price">đ500.000</p>
@@ -118,11 +108,11 @@
     </div>
   </div>
 
-  <!-- Service Table -->
+  <!-- Spa -->
   <div class="service-table">
     <h2>PM Spa</h2>
     <div class="service-row">
-      <div class="service-image"> <img src="body.jpg" alt="Massage Body"> </div>
+      <div class="service-image"><img src="body.jpg" alt="Massage Body"></div>
       <div class="service-info">
         <h3>Combo Massage</h3>
       </div>
@@ -130,7 +120,7 @@
       <button class="service-btn" onclick="addService('Combo Massage', 539000)">Add</button>
     </div>
     <div class="service-row">
-      <div class="service-image"> <img src="foot.jpg" alt="Foot Massage"> </div>
+      <div class="service-image"><img src="foot.jpg" alt="Foot Massage"></div>
       <div class="service-info">
         <h3>Foot Massage</h3>
       </div>
@@ -138,7 +128,7 @@
       <button class="service-btn" onclick="addService('Foot Massage', 199000)">Add</button>
     </div>
     <div class="service-row">
-      <div class="service-image"> <img src="acup.jpg" alt="Acupressure Massage"> </div>
+      <div class="service-image"><img src="acup.jpg" alt="Acupressure Massage"></div>
       <div class="service-info">
         <h3>Acupressure Massage</h3>
       </div>
@@ -146,45 +136,44 @@
       <button class="service-btn" onclick="addService('Acupressure Massage', 349000)">Add</button>
     </div>
     <div class="service-row">
-      <div class="service-image"> <img src="facial.jpg" alt="Facial Massage"> </div>
+      <div class="service-image"><img src="facial.jpg" alt="Facial Massage"></div>
       <div class="service-info">
         <h3>Facial Massage</h3>
       </div>
       <div class="service-price">đ299.000</div>
       <button class="service-btn" onclick="addService('Facial Massage', 299000)">Add</button>
     </div>
-  <div class="service-row">
-    <div class="service-image"> <img src="her.jpg" alt="Herbal Hair Wash"> </div>
-    <div class="service-info">
-      <h3>Herbal Therapeutic Hair Wash</h3>
+    <div class="service-row">
+      <div class="service-image"><img src="her.jpg" alt="Herbal Hair Wash"></div>
+      <div class="service-info">
+        <h3>Herbal Hair Wash</h3>
+      </div>
+      <div class="service-price">đ239.000</div>
+      <button class="service-btn" onclick="addService('Herbal Hair Wash', 239000)">Add</button>
     </div>
-    <div class="service-price">đ239.000</div>
-    <button class="service-btn" onclick="addService('Herbal Therapeutic Hair Wash', 239000)">Add</button>
-  </div>
-  
-  <div class="service-row">
-    <div class="service-image"> <img src="neck.jpg" alt="Neck & Shoulder Massage"> </div>
-    <div class="service-info">
-      <h3>Neck & Shoulder Massage</h3>
+    <div class="service-row">
+      <div class="service-image"><img src="neck.jpg" alt="Neck & Shoulder Massage"></div>
+      <div class="service-info">
+        <h3>Neck & Shoulder Massage</h3>
+      </div>
+      <div class="service-price">đ129.000</div>
+      <button class="service-btn" onclick="addService('Neck & Shoulder Massage', 129000)">Add</button>
     </div>
-    <div class="service-price">đ129.000</div>
-    <button class="service-btn" onclick="addService('Neck & Shoulder Massage', 129000)">Add</button>
-  </div>
   </div>
 
+  <!-- Food -->
   <div class="service-table food-service">
     <h3>Food Service</h3>
     <div class="service-row">
-      <div class="service-image">
-        <img src="bre.jpg" alt="Breakfast">
-      </div>
+      <div class="service-image"><img src="bre.jpg" alt="Breakfast"></div>
       <div class="service-info">
         <h3>Breakfast</h3>
       </div>
       <div class="service-price"></div>
-      <button class="service-btn">Service Included</button>
+      <button class="service-btn" disabled>Service Included</button>
     </div>
   </div>
+
   <!-- Bill -->
   <div class="bill">
     <h3>My Booking Bill</h3>
@@ -195,31 +184,17 @@
   <button class="book-btn" onclick="window.location.href='finish.html'">Book</button>
 </div>
 
+
   <footer class="footer">
     <div class="footer-left">
       <p class="brand">Prestige Manor</p>
     </div>
-    <div class="footer-middle">
-      <ul>
-        <li><a href="#">▶ Home</a></li>
-        <li><a href="#">▶ Accommodation</a></li>
-        <li><a href="book.html">▶ Book Direct</a></li>
-        <li><a href="#">▶ PM Restaurant</a></li>
-        <li><a href="spa.html">▶ PM Spa</a></li>
-      </ul>
-    </div>
-    <div class="footer-right">
-      <h3>CONTACT US</h3>
-      <p>▶ Hotline/Zalo: +84 94271</p>
-      <p>▶ Location: Quy Nhon</p>
-    </div>
   </footer>
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="guest.js"></script>
-   <script src="script.js"></script>
-   
-  
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="guest.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>

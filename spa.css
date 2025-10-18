@@ -249,13 +249,7 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-/* Căn giữa Select a Rate Plan */
-.select h2 {
-  text-align: center;
-  margin: 20px 0;
-  font-size: 24px;
-  font-weight: bold;
-}
+
 /* Nút */
 .btn-find {
   background: #6b6b50;
@@ -272,40 +266,7 @@ body {
   background: #4a4a35;
 }
 
-
-/* Footer */
-    .footer {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      padding: 40px 60px;
-      background-color: #fcfde6;
-      gap: 20px;
-    }
-    .footer-left .brand {
-      font-size: 26px;
-      font-family: "Great Vibes", cursive;
-      color: #444;
-    }
-    .footer-middle ul {
-      list-style: none;
-      padding: 0;
-    }
-    .footer-middle ul li {
-      margin: 8px 0;
-    }
-    .footer-middle ul li a {
-      text-decoration: none;
-      color: #333;
-      font-size: 16px;
-      transition: 0.3s;
-    }
-    .footer-middle ul li a:hover {
-      color: #000000;
-    }
-    .footer-right h3 {
-      margin-bottom: 12px;
-      color: #333;
-    }
+/*phan dich vu*/
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr); /* luôn 3 cột */
@@ -341,4 +302,38 @@ body {
   font-weight: bold;
   color: #000;   /* chữ đen */
 }
+/* Footer */
+    .footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      padding: 40px 60px;
+      background-color: #fcfde6;
+      gap: 20px;
+    }
+    .footer-left .brand {
+      font-size: 26px;
+      font-family: "Great Vibes", cursive;
+      color: #444;
+    }
+    .footer-middle ul {
+      list-style: none;
+      padding: 0;
+    }
+    .footer-middle ul li {
+      margin: 8px 0;
+    }
+    .footer-middle ul li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+    .footer-middle ul li a:hover {
+      color: #000000;
+    }
+    .footer-right h3 {
+      margin-bottom: 12px;
+      color: #333;
+    }
+    
 

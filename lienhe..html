@@ -1,90 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hotel Contact Us</title>
   <link rel="stylesheet" href="contact.css">
 </head>
+
 <body>
   <!-- Header -->
   <header class="header">
     <div class="menu-btn" onclick="toggleMenu()">☰</div>
     <div id="mySidebar" class="sidebar">
-        <a href="#">Home</a>
-        <a href="#">Accommodation</a>
-        <a href="">Booking</a>
-        <a href="#">Services</a>
-        <a href="lienhe.html">Contact Us</a>
-        <a href="dangnhap.html">Login</a>
-        <a href="dangki.html">Signin</a>
+      <a href="#">Home</a>
+      <a href="#">Accommodation</a>
+      <a href="">Booking</a>
+      <a href="#">Services</a>
+      <a href="lienhe.html">Contact Us</a>
+      <a href="dangnhap.html">Login</a>
+      <a href="dangki.html">Signin</a>
     </div>
     <div class="logo">Prestige Manor</div>
     <a href="book.html">
-    <button class="btn-book">BOOK DIRECT</button></a>
+      <button class="btn-book">BOOK DIRECT</button></a>
   </header>
 
   <!-- Booking -->
 
-<nav class="booking-bar">
-  <div class="booking-title">
-    <h2>BOOK ONLINE</h2>
-    <p>Guaranteed accommodation</p>
-  </div>
+  <nav class="booking-bar">
+    <div class="booking-title">
+      <h2>BOOK ONLINE</h2>
+      <p>Guaranteed accommodation</p>
+    </div>
 
-  <div class="booking-fields">
-            <div class="field">
-                <label><i class="fa fa-calendar"></i> Check-in</label>
-                <div class="input-wrapper">
-                    <input id="checkin" type="text" placeholder="dd/mm/yyyy">
-                    <span class="calendar-icon">🗓 </span>
+    <div class="booking-fields">
+      <div class="field">
+        <label><i class="fa fa-calendar"></i> Check-in</label>
+        <div class="input-wrapper">
+          <input id="checkin" type="text" placeholder="dd/mm/yyyy">
+          <span class="calendar-icon">🗓 </span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label><i class="fa fa-calendar"></i> Check-out</label>
+        <div class="input-wrapper">
+          <input id="checkout" type="text" placeholder="dd/mm/yyyy">
+          <span class="calendar-icon">🗓</span>
+        </div>
+      </div>
+
+      <!-- Guests dropdown -->
+      <div class="guests-dropdown">
+        <label class="field-label">Guests</label>
+
+        <div class="guests-wrapper">
+          <div class="guests-display" id="guestBox">2 Adults, 0 Children</div>
+
+          <!-- Popup -->
+          <div class="guests-popup" id="guestsPopup" style="display:none;">
+            <div class="room">
+              <div class="room-header">
+                <span>Room 1</span>
+              </div>
+              <div class="controls">
+                <div class="control">
+                  <label>Adults</label>
+                  <button class="minus">-</button>
+                  <span class="count">2</span>
+                  <button class="plus">+</button>
                 </div>
+                <div class="control">
+                  <label>Children</label>
+                  <button class="minus">-</button>
+                  <span class="count">0</span>
+                  <button class="plus">+</button>
+                </div>
+                <div class="control">
+                  <label>Type Room</label>
+                  <select class="room-type">
+                    <option value="Single Room">Single Room</option>
+                    <option value="Twin Room">Twin Room</option>
+                    <option value="VIP Room">VIP Room</option>
+                  </select>
+                </div>
+              </div>
             </div>
 
-            <div class="field">
-                <label><i class="fa fa-calendar"></i> Check-out</label>
-                <div class="input-wrapper">
-                    <input id="checkout" type="text" placeholder="dd/mm/yyyy">
-                    <span class="calendar-icon">🗓</span>
-                </div>
-            </div>
-
-            <!-- Guests dropdown -->
-            <div class="guests-dropdown">
-                <label class="field-label">Guests</label>
-
-                <div class="guests-wrapper">
-                    <div class="guests-display" id="guestBox">2 Adults, 0 Children</div>
-
-                    <!-- Popup -->
-                    <div class="guests-popup" id="guestsPopup" style="display:none;">
-                        <div class="room">
-                            <div class="room-header">
-                                <span>Room 1</span>
-                            </div>
-                            <div class="controls">
-                                <div class="control">
-                                    <label>Adults</label>
-                                    <button class="minus">-</button>
-                                    <span class="count">2</span>
-                                    <button class="plus">+</button>
-                                </div>
-                                <div class="control">
-                                    <label>Children</label>
-                                    <button class="minus">-</button>
-                                    <span class="count">0</span>
-                                    <button class="plus">+</button>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="add-room" id="addRoomBtn">+ ADD A ROOM</button>
-                        <button class="done" id="doneBtn">DONE</button>
-                    </div>
-                </div>
-            </div>
-            <a href="book.html">
-                <button class="btn-find">FIND ROOM</button></a>
-    </nav>
+            <button class="add-room" id="addRoomBtn">+ ADD A ROOM</button>
+            <button class="done" id="doneBtn">DONE</button>
+          </div>
+        </div>
+      </div>
+      <a href="book.html">
+        <button class="btn-find">FIND ROOM</button></a>
+  </nav>
 
 
   <!-- Banner -->
@@ -94,8 +105,11 @@
 
   <!-- Map -->
   <section class="map">
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1531.9615539988283!2d109.21921440765162!3d13.761419046135368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x316f6cecf80ecc6f%3A0x3c5a245002730526!2zMSBOZ8O0IE3DonksIE5ndXnhu4VuIFbEg24gQ-G7qywgUXV5IE5oxqFuLCBCw6xuaCDEkOG7i25oIDU1MDAwLCBWaeG7h3QgTmFt!5e1!3m2!1svi!2s!4v1759132762937!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-           
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1531.9615539988283!2d109.21921440765162!3d13.761419046135368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x316f6cecf80ecc6f%3A0x3c5a245002730526!2zMSBOZ8O0IE3DonksIE5ndXnhu4VuIFbEg24gQ-G7qywgUXV5IE5oxqFuLCBCw6xuaCDEkOG7i25oIDU1MDAwLCBWaeG7h3QgTmFt!5e1!3m2!1svi!2s!4v1759132762937!5m2!1svi!2s"
+      width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+
   </section>
 
   <!-- FAQ -->
@@ -103,7 +117,9 @@
     <h2>Information Questions</h2>
     <details>
       <summary>Does Hotel Prestige Manor offer airport transfer services?</summary>
-      <p>Yes, Hotel Prestige Manor provides convenient transportation to and from Phu Cat Airport. Our reliable airport pick-up and drop-off service can be arranged prior to your arrival or departure for a smooth start and to your stay in Quy Nhon.</p>
+      <p>Yes, Hotel Prestige Manor provides convenient transportation to and from Phu Cat Airport. Our reliable airport
+        pick-up and drop-off service can be arranged prior to your arrival or departure for a smooth start and to your
+        stay in Quy Nhon.</p>
     </details>
     <details>
       <summary>How can I make a room reservation at Hotel Prestige Manor?</summary>
@@ -131,9 +147,10 @@
       <p>▶ Location: Quy Nhon</p>
     </div>
   </footer>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="guest.js">
-</script>
+  </script>
 </body>
+
 </html>

@@ -53,36 +53,44 @@
 
       <!-- Guests dropdown -->
       <div class="guests-dropdown">
-                <label class="field-label">Guests</label>
+        <label class="field-label">Guests</label>
 
-                <div class="guests-wrapper">
-                    <div class="guests-display" id="guestBox">2 Adults, 0 Children</div>
+        <div class="guests-wrapper">
+          <div class="guests-display" id="guestBox">2 Adults, 0 Children</div>
 
-                    <!-- Popup -->
-                    <div class="guests-popup" id="guestsPopup" style="display:none;">
-                        <div class="room">
-                            <div class="room-header">
-                                <span>Room 1</span>
-                            </div>
-                            <div class="controls">
-                                <div class="control">
-                                    <label>Adults</label>
-                                    <button class="minus">-</button>
-                                    <span class="count">2</span>
-                                    <button class="plus">+</button>
-                                </div>
-                                <div class="control">
-                                    <label>Children</label>
-                                    <button class="minus">-</button>
-                                    <span class="count">0</span>
-                                    <button class="plus">+</button>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="add-room" id="addRoomBtn">+ ADD A ROOM</button>
-                        <button class="done" id="doneBtn">DONE</button>
-                    </div>
+          <!-- Popup -->
+          <div class="guests-popup" id="guestsPopup" style="display:none;">
+            <div class="room">
+              <div class="room-header">
+                <span>Room 1</span>
+              </div>
+              <div class="controls">
+                <div class="control">
+                  <label>Adults</label>
+                  <button class="minus">-</button>
+                  <span class="count">2</span>
+                  <button class="plus">+</button>
                 </div>
+                <div class="control">
+                  <label>Children</label>
+                  <button class="minus">-</button>
+                  <span class="count">0</span>
+                  <button class="plus">+</button>
+                </div>
+                <div class="control">
+                  <label>Type Room</label>
+                  <select class="room-type">
+                    <option value="Single Room">Single Room</option>
+                    <option value="Twin Room">Twin Room</option>
+                    <option value="VIP Room">VIP Room</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <button class="add-room" id="addRoomBtn">+ ADD A ROOM</button>
+            <button class="done" id="doneBtn">DONE</button>
+          </div>
+        </div>
 
       </div>
       <a href="book.html">

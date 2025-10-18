@@ -1,45 +1,74 @@
+// ===================== FINISH PAGE =====================
+
+// Chạy khi trang load
 document.addEventListener("DOMContentLoaded", () => {
   initBill();
   initBookButton();
-  initPaymentOptions(); // thêm hàm xử lý payment
+  initPaymentOptions();
+  initBookingFor(); // Xử lý Myself / Someone else
 });
 
+// ===================== BILL =====================
 function initBill() {
   const billItemsDiv = document.getElementById("bill-items");
   const roomDiv = document.getElementById("roomPrice");
   const servicesDiv = document.getElementById("servicesPrice");
   const totalDiv = document.getElementById("totalPrice");
   const totalDisplay = document.querySelector(".price-total");
+
   if (!billItemsDiv) return;
 
-  const roomPrice = parseInt(localStorage.getItem("selectedRoomPrice")) || 0;
-  const services = JSON.parse(localStorage.getItem("selectedServices") || "[]");
-  const guestInfo = JSON.parse(localStorage.getItem("guestInfo") || "{}");
-  const roomCount = guestInfo.rooms || 1;
+  // Lấy dữ liệu từ localStorage (từ plans.html và book.html)
+  const selectedRooms = JSON.parse(localStorage.getItem("selectedRooms")) || [];
+  let selectedServices = JSON.parse(localStorage.getItem("selectedServices")) || [];
+  const finalTotal = parseInt(localStorage.getItem("finalTotal")) || 0;
 
-  const roomTotal = roomPrice * roomCount;
-  let serviceTotal = 0;
+  // Đảm bảo có đúng 1 breakfast duy nhất
+  selectedServices = selectedServices.filter((s, i, arr) =>
+    i === arr.findIndex(x => x.name === s.name)
+  );
+  if (!selectedServices.some(s => s.name === "Breakfast - Included")) {
+    selectedServices.unshift({ name: "Breakfast - Included", price: 0, quantity: 1 });
+  }
 
-  billItemsDiv.innerHTML = "";
-  services.forEach(s => {
-    const p = document.createElement("p");
-    if (s.name.toLowerCase() === "breakfast") {
-      p.textContent = `Breakfast: Included`;
-    } else {
-      const price = s.price * s.quantity;
-      serviceTotal += price;
-      p.textContent = `${s.name} (${s.quantity}): ${price.toLocaleString("vi-VN")} VND`;
-    }
-    billItemsDiv.appendChild(p);
+  // ======== Hiển thị phòng ========
+  let roomHtml = "<h4>Rooms:</h4>";
+  let roomTotal = 0;
+
+  selectedRooms.forEach((r, i) => {
+    const subtotal = r.price * r.quantity * r.days;
+    roomTotal += subtotal;
+    roomHtml += `<p>${i + 1}. ${r.roomType} × ${r.quantity} room(s) × ${r.days} day(s) = ${subtotal.toLocaleString()}đ</p>`;
   });
 
-  if (roomDiv) roomDiv.textContent = `Room: ${roomPrice} x ${roomCount} = ${roomTotal.toLocaleString("vi-VN")} VND`;
-  if (servicesDiv) servicesDiv.textContent = `Services: ${serviceTotal.toLocaleString("vi-VN")} VND`;
-  if (totalDiv) totalDiv.textContent = `Total: ${(roomTotal + serviceTotal).toLocaleString("vi-VN")} VND`;
-  if (totalDisplay) totalDisplay.textContent = `${(roomTotal + serviceTotal).toLocaleString("vi-VN")} VND`;
+  // ======== Hiển thị dịch vụ ========
+  let serviceHtml = "<h4>Services:</h4>";
+  let serviceTotal = 0;
+
+  selectedServices.forEach(s => {
+    if (s.name === "Breakfast - Included") {
+      serviceHtml += `<p>Breakfast - Included</p>`;
+    } else {
+      const subtotal = (s.price || 0) * (s.quantity || 0);
+      serviceTotal += subtotal;
+      serviceHtml += `<p>${s.name} (${s.quantity}) = ${subtotal.toLocaleString()}đ</p>`;
+    }
+  });
+
+  // ======== Render tổng ========
+  billItemsDiv.innerHTML = roomHtml + serviceHtml;
+  if (roomDiv) roomDiv.textContent = `Room total: ${roomTotal.toLocaleString()}đ`;
+  if (servicesDiv) servicesDiv.textContent = `Services total: ${serviceTotal.toLocaleString()}đ`;
+
+  const grandTotal = roomTotal + serviceTotal;
+  if (totalDiv) totalDiv.textContent = `Total: ${grandTotal.toLocaleString()}đ`;
+  if (totalDisplay) totalDisplay.textContent = `${grandTotal.toLocaleString()}đ`;
+
+  // Lưu tổng vào localStorage để thanh toán
+  localStorage.setItem("finalTotal", grandTotal);
 }
 
-// Xử lý hiển thị info chuyển khoản
+// ===================== PAYMENT =====================
 function initPaymentOptions() {
   const paymentRadios = document.querySelectorAll('input[name="payment"]');
   const bankInfoDiv = document.querySelector(".bank-info");
@@ -56,6 +85,7 @@ function initPaymentOptions() {
   });
 }
 
+// ===================== BOOK BUTTON =====================
 function initBookButton() {
   const bookBtn = document.getElementById("bookNow");
   if (!bookBtn) return;
@@ -63,73 +93,54 @@ function initBookButton() {
   bookBtn.addEventListener("click", (e) => {
     e.preventDefault();
 
-    const fields = [
-      document.querySelector('input[placeholder="Enter your first name"]'),
-      document.querySelector('input[placeholder="Enter your last name"]'),
-      document.querySelector('input[type="tel"]'),
-      document.querySelector('input[type="email"]'),
-      document.querySelector("select")
-    ];
-
+    const fields = document.querySelectorAll("input, select, textarea");
     let valid = true;
+
+    // Kiểm tra các trường bắt buộc
     fields.forEach(f => {
-      if (!f.value.trim()) {
+      if (f.hasAttribute("required") && !f.value.trim()) {
         f.style.borderColor = "red";
         valid = false;
-      } else f.style.borderColor = "#ccc";
+      } else {
+        f.style.borderColor = "#ccc";
+      }
     });
 
+    // Điều khoản
     const agree = document.getElementById("agree-terms");
     if (!agree || !agree.checked) {
       alert("⚠️ Please agree to the Terms & Conditions before booking!");
       valid = false;
     }
 
-    // kiểm tra radio payment
+    // Kiểm tra phương thức thanh toán
     const paymentChecked = document.querySelector('input[name="payment"]:checked');
     if (!paymentChecked) {
       alert("⚠️ Please select a payment method!");
       valid = false;
     }
 
-    if (!valid) {
-      return;
-    }
+    if (!valid) return;
 
     alert(`✅ Booking successful! Payment method: ${paymentChecked.nextSibling.textContent.trim()}`);
 
-    // Xóa dữ liệu booking đã lưu
+    // Xóa dữ liệu cũ sau khi đặt thành công
     localStorage.removeItem("guestInfo");
-    localStorage.removeItem("selectedRoomPrice");
-    localStorage.removeItem("selectedRoomType");
+    localStorage.removeItem("selectedRooms");
     localStorage.removeItem("selectedServices");
+    localStorage.removeItem("finalTotal");
 
-    // Có thể chuyển về trang index hoặc thank you page
-    // window.location.href = "index.html";
+    // Có thể chuyển hướng sang trang cảm ơn
+    // window.location.href = "thankyou.html";
   });
 }
-document.addEventListener("DOMContentLoaded", () => {
-  initBill();
-  initBookButton();
-  initPaymentOptions();
-  initBookingFor(); // 👈 thêm dòng này
-});
 
-// ================= BOOKING FOR MYSELF OR SOMEONE ELSE =================
-document.addEventListener("DOMContentLoaded", () => {
-  initBill();
-  initBookButton();
-  initPaymentOptions();
-  initBookingFor(); // 👈 xử lý chuyển đổi "Myself" / "Someone else"
-});
-
-// ================= BOOKING FOR MYSELF OR SOMEONE ELSE =================
+// ===================== MYSELF / SOMEONE ELSE =====================
 function initBookingFor() {
   const bookingForBtns = document.querySelectorAll(".booking-for button");
   const form = document.querySelector(".booking-form");
   if (!bookingForBtns || !form) return;
 
-  // ✅ Tạo nội dung người được đặt hộ (ban đầu ẩn)
   const recipientFormHTML = `
     <h3>Recipient Information</h3>
     <div class="form-row">
@@ -167,12 +178,10 @@ function initBookingFor() {
     </div>
   `;
 
-  // Lưu nội dung ban đầu của form để khi quay lại “Myself” có thể khôi phục
   const originalFormHTML = form.innerHTML;
 
   bookingForBtns.forEach(btn => {
     btn.addEventListener("click", () => {
-      // Chuyển trạng thái active
       bookingForBtns.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
 
@@ -184,99 +193,5 @@ function initBookingFor() {
         form.innerHTML = originalFormHTML;
       }
     });
-  });
-}
-
-// ================= BILL, PAYMENT, BOOK BUTTON (các hàm bạn có sẵn) =================
-function initBill() {
-  const billItemsDiv = document.getElementById("bill-items");
-  const roomDiv = document.getElementById("roomPrice");
-  const servicesDiv = document.getElementById("servicesPrice");
-  const totalDiv = document.getElementById("totalPrice");
-  const totalDisplay = document.querySelector(".price-total");
-  if (!billItemsDiv) return;
-
-  const roomPrice = parseInt(localStorage.getItem("selectedRoomPrice")) || 0;
-  const services = JSON.parse(localStorage.getItem("selectedServices") || "[]");
-  const guestInfo = JSON.parse(localStorage.getItem("guestInfo") || "{}");
-  const roomCount = guestInfo.rooms || 1;
-
-  const roomTotal = roomPrice * roomCount;
-  let serviceTotal = 0;
-
-  billItemsDiv.innerHTML = "";
-  services.forEach(s => {
-    const p = document.createElement("p");
-    if (s.name.toLowerCase() === "breakfast") {
-      p.textContent = `Breakfast: Included`;
-    } else {
-      const price = s.price * s.quantity;
-      serviceTotal += price;
-      p.textContent = `${s.name} (${s.quantity}): ${price.toLocaleString("vi-VN")} VND`;
-    }
-    billItemsDiv.appendChild(p);
-  });
-
-  if (roomDiv) roomDiv.textContent = `Room: ${roomPrice} x ${roomCount} = ${roomTotal.toLocaleString("vi-VN")} VND`;
-  if (servicesDiv) servicesDiv.textContent = `Services: ${serviceTotal.toLocaleString("vi-VN")} VND`;
-  if (totalDiv) totalDiv.textContent = `Total: ${(roomTotal + serviceTotal).toLocaleString("vi-VN")} VND`;
-  if (totalDisplay) totalDisplay.textContent = `${(roomTotal + serviceTotal).toLocaleString("vi-VN")} VND`;
-}
-
-function initPaymentOptions() {
-  const paymentRadios = document.querySelectorAll('input[name="payment"]');
-  const bankInfoDiv = document.querySelector(".bank-info");
-  if (!paymentRadios || !bankInfoDiv) return;
-
-  paymentRadios.forEach(radio => {
-    radio.addEventListener("change", () => {
-      if (radio.nextSibling.textContent.includes("Chuyển khoản") && radio.checked) {
-        bankInfoDiv.style.display = "block";
-      } else if (radio.checked) {
-        bankInfoDiv.style.display = "none";
-      }
-    });
-  });
-}
-
-function initBookButton() {
-  const bookBtn = document.getElementById("bookNow");
-  if (!bookBtn) return;
-
-  bookBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    const fields = document.querySelectorAll("input, select, textarea");
-    let valid = true;
-
-    fields.forEach(f => {
-      if (f.hasAttribute("required") && !f.value.trim()) {
-        f.style.borderColor = "red";
-        valid = false;
-      } else {
-        f.style.borderColor = "#ccc";
-      }
-    });
-
-    const agree = document.getElementById("agree-terms");
-    if (!agree || !agree.checked) {
-      alert("⚠️ Please agree to the Terms & Conditions before booking!");
-      valid = false;
-    }
-
-    const paymentChecked = document.querySelector('input[name="payment"]:checked');
-    if (!paymentChecked) {
-      alert("⚠️ Please select a payment method!");
-      valid = false;
-    }
-
-    if (!valid) return;
-
-    alert(`✅ Booking successful! Payment method: ${paymentChecked.nextSibling.textContent.trim()}`);
-
-    localStorage.removeItem("guestInfo");
-    localStorage.removeItem("selectedRoomPrice");
-    localStorage.removeItem("selectedRoomType");
-    localStorage.removeItem("selectedServices");
   });
 }
