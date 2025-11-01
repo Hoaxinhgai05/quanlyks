@@ -164,6 +164,19 @@ body {
   min-width: 150px;
 }
 
+.find-room-btn {
+  flex-grow: 0;
+  background-color: var(--primary-color);
+  color: white;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  height: 40px;
+  min-width: 150px;
+}
 
 /* -------------------- SIDEBAR -------------------- */
 .sidebar {
@@ -298,7 +311,8 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-/* ----BANNER-------------------- */
+
+/* -------------------BANNER--------------------- */
 .banner-text {
   background: url('spa.jpg') no-repeat center center/cover;
   height: 600px;
@@ -322,7 +336,6 @@ body {
   color: #333;
   line-height: 1.6;
 }
-
 .info-line {
   display: flex;
   justify-content: center;
@@ -333,8 +346,7 @@ body {
   font-weight: 500;
   color: #444;
 }
-
-/*-----------CÁC GÓI SPA--------------*/
+/*----------------CÁC DỊCH VỤ-------------------*/
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -362,13 +374,13 @@ body {
     .service-title {
   font-size: 16px;
   font-weight: bold;
-  color: #000;   
+  color: #000;  
 }
 
 .service-price {
   font-size: 14px;
   font-weight: bold;
-  color: #000;  
+  color: #000;   
 }
 /* -------------------- 4.FOOTER -------------------- */
 .footer {
@@ -378,7 +390,6 @@ body {
   background-color: #EFEBE0;
   gap: 20px;
 }
-
 .footer-left .brand {
   font-size: 26px;
   font-family: "Great Vibes", cursive;
@@ -409,6 +420,4 @@ body {
   margin-bottom: 12px;
   color: #333;
 }
-
-
 

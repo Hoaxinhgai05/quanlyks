@@ -5,7 +5,8 @@
       background-size: cover;
       font-family: Arial, sans-serif;
     }
-    /* ------------LOGIN BOX-------------- */
+
+    /* ----------------------LOGIN BOX-------------------- */
     .login-box {
       width: 420px;
       margin: 150px auto;
@@ -26,8 +27,7 @@
       border: 1px solid #ccc;
       border-radius: 5px;
     }
-
-    /* ------NÚT LOGIN------------- */
+    /* -------------NÚT LOGIN------------ */
     .btn-login {
       width: 95%;
       padding: 10px;

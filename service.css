@@ -1,11 +1,17 @@
 /* Thiết lập màu sắc và font chữ */
 :root {
-  --primary-color: #A9A48F;/* Màu xanh ô liu / be */
-  --background-color: #EFEBE0;/* Màu nền cho thanh đặt phòng */
-  --light-bg-color: #E6E1D1;/* Màu be nhạt cho các nút và hình tròn */
-  --accent-color: #1a1a1a; /* Màu chữ chính */
-  --light-green: #e9f5e1;/* Màu xanh nhạt cho hình tròn phòng */
-  --light-yellow: #f5f5e1;/* Màu vàng nhạt cho hình tròn phòng */
+  --primary-color: #A9A48F;
+  /* Màu xanh ô liu / be */
+  --background-color: #EFEBE0;
+  /* Màu nền cho thanh đặt phòng */
+  --light-bg-color: #E6E1D1;
+  /* Màu be nhạt cho các nút và hình tròn */
+  --accent-color: #1a1a1a;
+  /* Màu chữ chính */
+  --light-green: #e9f5e1;
+  /* Màu xanh nhạt cho hình tròn phòng */
+  --light-yellow: #f5f5e1;
+  /* Màu vàng nhạt cho hình tròn phòng */
 }
 
 * {
@@ -25,8 +31,7 @@ body {
 .main-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  /* căn đều hai đầu */
+  justify-content: space-between; /* căn đều hai đầu */
   color: white;
   padding: 15px 30px;
   position: relative;
@@ -148,7 +153,7 @@ body {
   width: 100%;
   height: 40px;
   border: 1px solid #ccc;
-  border-radius: 0; 
+  border-radius: 0; /* ô vuông */
   padding: 8px 36px 8px 12px;
   font-size: 14px;
   color: var(--accent-color);
@@ -179,6 +184,7 @@ body {
   height: 40px;
   min-width: 150px;
 }
+
 
 /* -------------------- SIDEBAR -------------------- */
 .sidebar {
@@ -337,6 +343,7 @@ body {
   font-size: 24px;
   font-weight: bold;
 }
+
 /* ------------------- PICK-UP SERVICE ------------------- */
 .extra-service {
   display: flex;
@@ -402,55 +409,13 @@ body {
   background: #4e4a2f;
 }
 
-
-/* Details text */
-.offer-details {
-  margin: 15px 0;
-  padding-left: 0;
-  list-style: none;
-}
-
-.offer-details li {
-  font-size: 14px;
-  line-height: 1.5;
-  color: #555;
-}
-
-/* Footer: price + button */
-.offer-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.price {
-  font-size: 18px;
-  font-weight: bold;
-  color: #000;
-}
-
-.add-btn {
-  background: #A9A48F;
-  border: none;
-  color: #fff;
-  font-weight: bold;
-  padding: 8px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.add-btn:hover {
-  background: #A9A48F;
-}
-
-/* ==== Service Table ==== */
+/* ----------------- BẢNG DỊCH VỤ --------------- */
 .service-table {
   max-width: 900px;
   margin: 30px auto;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 20px;
 }
 
@@ -462,7 +427,7 @@ body {
   color: #333;
 }
 
-/* -----MỖI DỊCH VỤ------- */
+/* Mỗi dịch vụ */
 .service-row {
   display: flex;
   align-items: center;
@@ -483,7 +448,7 @@ body {
   flex-shrink: 0;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .service-image img {
@@ -492,7 +457,7 @@ body {
   object-fit: cover;
 }
 
-/* Nội dung dịch vụ */
+/* -------------NỘI DUNG DỊCH VỤ------------------ */
 .service-info {
   flex: 1;
 }
@@ -513,7 +478,7 @@ body {
 
 /* Nút ADD */
 button.service-btn {
-  background: #A9A48F;
+  background: #6b6b50;
   border: none;
   color: #fff;
   font-weight: bold;
@@ -524,7 +489,7 @@ button.service-btn {
 }
 
 button.service-btn:hover {
-  background: #A9A48F;
+  background: #6b6b50;
 }
 
 
@@ -535,10 +500,10 @@ button.service-btn:hover {
   padding: 25px;
   margin: 30px auto;
   max-width: 900px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
-.food-service h3 {
+.food-service {
   text-align: center;
   margin-bottom: 20px;
   font-size: 1.8rem;
@@ -562,14 +527,17 @@ button.service-btn:hover {
   width: 80px;
   height: 80px;
   border-radius: 12px;
-  overflow: hidden;   
-  flex-shrink: 0;     
+  overflow: hidden;
+  /* Cắt phần thừa để ảnh luôn khít */
+  flex-shrink: 0;
+  /* Không bị co khi flex */
 }
 
 .service-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;  
+  object-fit: cover;
+  /* Fill kín khung, crop ảnh */
   display: block;
 }
 
@@ -588,17 +556,92 @@ button.service-btn:hover {
   border: none;
   border-radius: 20px;
   font-weight: bold;
-  background: #A9A48F;
+  background: #6b6b50;
   color: #fff;
   cursor: default;
 }
 
-/*----------- BILL (chat-style) -----------*/
+/*------------------BILL-------------*/
+.bill {
+  position: fixed;
+  /* luôn dính ở 1 chỗ */
+  top: 80px;
+  /* cách trên 80px (bạn chỉnh tùy) */
+  right: 20px;
+  /* dính sát mép phải */
+  width: 220px;
+  /* nhỏ gọn */
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.bill h3 {
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: #5c4c35;
+  text-align: center;
+}
+
+.bill-items p {
+  margin-bottom: 5px;
+}
+
+.discount {
+  margin-top: 6px;
+  color: #c00;
+  font-weight: bold;
+  text-align: right;
+  font-size: 12px;
+}
+
+.total {
+  margin-top: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: right;
+  color: #7c6029;
+}
+
+.bill li {
+  font-size: 14px;
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.book-btn {
+  background-color: #6b6b50;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: block;
+  margin: 15px auto;
+}
+
+.book-btn:hover {
+  background-color: #6b6b50;
+}
+
+.booking-status {
+  text-align: center;
+  font-weight: bold;
+  color: #6b6b50;
+  margin-top: 10px;
+}
+/* ---------------- BILL CHAT STYLE ---------------- */
 .bill-toggle {
   position: fixed;
   right: 20px;
   bottom: 25px;
-  background: #A9A48F;
+  background: #6b6b50;
   color: #fff;
   font-size: 20px;
   border-radius: 50%;
@@ -618,19 +661,15 @@ button.service-btn:hover {
   transform: scale(1.05);
 }
 
-/* Bill Box */
 .bill {
   position: fixed;
   right: 25px;
   bottom: 95px;
   width: 280px;
   background: #fff;
-  border: 1px solid #ddd;
   border-radius: 16px;
   box-shadow: 0 4px 14px rgba(0,0,0,0.15);
   padding: 16px;
-  font-size: 13px;
-  line-height: 1.4;
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.3s ease;
@@ -644,67 +683,7 @@ button.service-btn:hover {
   pointer-events: all;
 }
 
-.bill h3 {
-  margin-bottom: 8px;
-  font-size: 15px;
-  color: #A9A48F;
-  text-align: center;
-}
-
-.bill-items p {
-  margin-bottom: 5px;
-}
-
-.bill li {
-  font-size: 14px;
-  margin-bottom: 6px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.discount {
-  margin-top: 6px;
-  color: #c00;
-  font-weight: bold;
-  text-align: right;
-  font-size: 12px;
-}
-
-.total {
-  margin-top: 8px;
-  font-size: 15px;
-  font-weight: bold;
-  text-align: right;
-  color: #A9A48F;
-}
-
-/* Button & Status */
-.book-btn {
-  background-color: #A9A48F;
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-  display: block;
-  margin: 15px auto;
-}
-
-.book-btn:hover {
-  background-color: #A9A48F;
-}
-
-.booking-status {
-  text-align: center;
-  font-weight: bold;
-  color: #A9A48F;
-  margin-top: 10px;
-}
-
-
-/* ----------- FOOTER ------------------*/
+/* -----------------FOOTER------------ */
 .footer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

@@ -31,8 +31,7 @@ body {
 .main-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  /* căn đều hai đầu */
+  justify-content: space-between; /* căn đều hai đầu */
   color: white;
   padding: 15px 30px;
   position: relative;
@@ -336,7 +335,7 @@ body {
   align-items: center;
 }
 
-/*chu*/
+/*--------------CHỮ--------------*/
 .select {
   text-align: center;
   margin: 40px 0 20px;
@@ -347,16 +346,16 @@ body {
   color: #444;
 }
 
-/* ------------------ ROOM CARD WRAPPER (no animation) ------------------ */
+/* ----------------- ROOM CARD PRICE + SELECT ----------------- */
 .card {
   max-width: 950px;
   margin: 25px auto;
   display: flex;
   flex-direction: row;
-  background: #fff; /* nền nhẹ */
+  background: #fff; 
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); /* bóng nhẹ cố định */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   align-items: center;
 }
 
@@ -447,7 +446,7 @@ body {
   }
 }
 
-/* ===== MINI BILL POPUP ===== */
+/* ---------------- MINI BILL POPUP --------- */
 .bill-popup {
   position: fixed;
   bottom: 30px;
@@ -504,7 +503,7 @@ body {
     transform: translateY(0);
   }
 }
-/* ----------- FOOTER ------------------*/
+/* -----------------FOOTER------------ */
 .footer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

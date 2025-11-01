@@ -78,7 +78,7 @@ function initPaymentOptions() {
     radio.addEventListener("change", () => {
       if (radio.nextSibling.textContent.includes("Bank transfer") && radio.checked) {
         bankInfoDiv.style.display = "block";
-      } else if (radio.checked) {
+      } else {
         bankInfoDiv.style.display = "none";
       }
     });
@@ -129,9 +129,6 @@ function initBookButton() {
     localStorage.removeItem("selectedRooms");
     localStorage.removeItem("selectedServices");
     localStorage.removeItem("finalTotal");
-
-    // Có thể chuyển hướng sang trang cảm ơn
-    // window.location.href = "thankyou.html";
   });
 }
 
@@ -186,12 +183,7 @@ function initBookingFor() {
       btn.classList.add("active");
 
       const isSomeoneElse = btn.textContent.trim().toLowerCase() === "someone else";
-
-      if (isSomeoneElse) {
-        form.innerHTML = recipientFormHTML;
-      } else {
-        form.innerHTML = originalFormHTML;
-      }
+      form.innerHTML = isSomeoneElse ? recipientFormHTML : originalFormHTML;
     });
   });
 }

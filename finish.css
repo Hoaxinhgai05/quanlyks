@@ -677,7 +677,6 @@ textarea:focus {
   display: none;
   z-index: 1999;
 }
-
 /* ----HIỂN THỊ BILL----------*/
 .bill.show {
   display: block;
