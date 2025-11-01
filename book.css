@@ -1,126 +1,264 @@
-body {
+/* Thiết lập màu sắc và font chữ */
+:root {
+  --primary-color: #A9A48F;
+  /* Màu xanh ô liu / be */
+  --background-color: #EFEBE0;
+  /* Màu nền cho thanh đặt phòng */
+  --light-bg-color: #E6E1D1;
+  /* Màu be nhạt cho các nút và hình tròn */
+  --accent-color: #1a1a1a;
+  /* Màu chữ chính */
+  --light-green: #e9f5e1;
+  /* Màu xanh nhạt cho hình tròn phòng */
+  --light-yellow: #f5f5e1;
+  /* Màu vàng nhạt cho hình tròn phòng */
+}
+
+* {
   margin: 0;
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: #fdfdf6;
-  color: #333;
-  line-height: 1.6;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.header {
+body {
+  font-family: 'Roboto', sans-serif;
+  color: var(--accent-color);
+  background-color: #fff;
+}
+
+/* -------------------- 1. HEADER VÀ LOGO -------------------- */
+/* Header chính */
+.main-header {
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 14px 25px;
-  background: #fff8dc;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.logo {
-  font-size: 28px;
-  font-weight: bold;
-  color: #222;
-  letter-spacing: 2px;
-  text-align: center;
-  font-family: "Great Vibes", cursive;
-}
-/* menu*/
-.menu-btn {
-  font-size: 28px;
-  cursor: pointer;
-  color: #222;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 6px 12px;
-  border-radius: 6px;
-  z-index: 1100;
-  position: absolute;
-  left: 20px;
-}
-
-.sidebar {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: #6b6b50;
-  overflow-x: hidden;
-  transition: 0.3s;
-  padding-top: 60px;
-  z-index: 1000;
-}
-
-.sidebar a {
-  display: block;
-  padding: 14px 25px;
+  justify-content: space-between;
+  /* căn đều hai đầu */
   color: white;
-  text-decoration: none;
-  font-size: 16px;
-  transition: 0.3s;
+  padding: 15px 30px;
+  position: relative;
 }
 
-.sidebar a:hover {
-  background: rgba(0, 0, 0, 0.1);
+/* Nút menu 3 gạch */
+.menu-toggle {
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
 }
-/*banner*/
-.banner {
-  background: url('book.jpg') no-repeat center center/cover;
-  height: 500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+/* Logo căn giữa tuyệt đối */
+.logo-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.logo-text {
+  font-family: "Playfair Display", serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+
+.menu-toggle {
+  background: none;
+  border: none;
+  font-size: 26px;
+  cursor: pointer;
+  color: var(--accent-color);
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 2000;
+}
+
+
+/* Hiệu ứng xoay nhẹ khi mở */
+.menu-toggle.active {
+  transform: rotate(90deg);
+}
+
+.book-direct {
+  text-decoration: none;
+  color: var(--accent-color);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+/* --- Logo --- */
+.logo-text {
+  font-family: 'Dancing Script', cursive;
+  font-size: 32px;
+  font-weight: 400;
+  margin-top: 5px;
+  letter-spacing: 1px;
+  color: var(--accent-color);
+}
+
+/* -------------------- 2. BOOKING BAR -------------------- */
+.booking-bar-wrapper {
+  background-color: var(--background-color);
+  padding: 20px 30px;
 }
 
 .booking-bar {
+  max-width: 1100px;
+  margin: 0 auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-end;
-  /* căn cùng hàng dưới */
-  background: #f5f4e6;
-  padding: 20px;
-  gap: 30px;
-  border-bottom: 2px solid #ddd;
-  flex-wrap: wrap;
-  /* vẫn responsive */
-}
-.booking-fields {
-  display: flex;
-  align-items: center;
   gap: 15px;
 }
 
-/* Style cho input lịch */
-.input-wrapper {
+.booking-item {
+  padding: 0;
+  flex-grow: 1;
+  min-width: 150px;
+}
+
+.online-info {
+  flex-grow: 0;
+  min-width: 180px;
+}
+
+.booking-item .label {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  margin-bottom: 5px;
+}
+
+.online-info .guarantee {
+  font-size: 14px;
+  color: var(--accent-color);
+}
+
+.input-field i {
+  color: var(--primary-color);
+  font-size: 18px;
+}
+/*-------Ô LỊCH -----------*/
+.input-field {
   position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.input-wrapper input {
   width: 100%;
-  padding: 8px 35px 8px 10px;
-  /* chừa khoảng bên phải cho icon */
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  background: none; 
+  border: none;     
+  padding: 0;       
 }
 
-.calendar-icon {
+.input-field input[type="text"],
+.input-field input[type="date"] {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 0; /* ô vuông */
+  padding: 8px 36px 8px 12px;
+  font-size: 14px;
+  color: var(--accent-color);
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.input-field i {
   position: absolute;
   right: 10px;
-  font-size: 18px;
-  color: #333;
-  cursor: pointer;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primary-color);
+  font-size: 16px;
+  pointer-events: none;
 }
-/* Popup bám ngay dưới guests-display */
+
+.find-room-btn {
+  flex-grow: 0;
+  background-color: var(--primary-color);
+  color: white;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  height: 40px;
+  min-width: 150px;
+}
+
+/* -------------------- SIDEBAR -------------------- */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 220px;
+  height: 100%;
+  background: #A9A48F;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px;
+  transition: left 0.35s ease;
+  z-index: 999;
+}
+
+.sidebar a {
+  color: #fff;
+  padding: 15px 20px;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+}
+
+.sidebar a:hover {
+  background-color: #A9A48F;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+/* ----------------------- GUESTS BOX ---------------------- */
+.guests-dropdown {
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+}
+
+.guests-dropdown .field-label {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  margin-bottom: 5px;
+}
+
+.guests-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.guests-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 10px 15px;
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  height: 40px;
+  cursor: pointer;
+  color: var(--accent-color);
+  font-size: 14px;
+}
+
+/* Popup giữ nguyên */
 .guests-popup {
   display: none;
   position: absolute;
-  top: 110%;
-  /* nằm ngay dưới */
+  top: 100%;
   left: 0;
-  /* bám mép trái */
+  margin-top: 4px;
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -157,6 +295,27 @@ body {
   color: black;
 }
 
+.add-room,
+.done {
+  margin-top: 10px;
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.add-room {
+  background: #f2f2f2;
+  color: black;
+}
+
+.done {
+  background: #A9A48F;
+  color: #fff;
+}
+
 /* Style cho nút xóa phòng */
 .delete-room {
   background: none;
@@ -177,85 +336,6 @@ body {
   align-items: center;
 }
 
-/* Guests dropdown */
-.guests-dropdown {
-  position: relative;
-}
-
-.guests-display {
-  border: 1px solid #ccc;
-  padding: 10px 15px;
-  border-radius: 6px;
-  background: #fff;
-  cursor: pointer;
-}
-
-.guests-display:hover {
-  background: #f5f5f5;
-}
-
-.guests-box {
-  display: none;
-  position: absolute;
-  top: 110%;
-  left: 0;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 15px;
-  min-width: 280px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-}
-
-.guest-type {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 12px 0;
-}
-
-.counter {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.counter button {
-  width: 28px;
-  height: 28px;
-  border: 1px solid #ccc;
-  border-radius: 50%;
-  background: #f9f9f9;
-  cursor: pointer;
-}
-
-.counter button:hover {
-  background: #eee;
-}
-
-.guests-actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
-}
-/*them xoa phong*/
-.add-room {
-  background: #f9f9f9;
-  border: 1px solid #ddd;
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.done {
-  background: #b48a5a;
-  border: none;
-  color: #fff;
-  padding: 6px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-}
 /*chu*/
 .select {
   text-align: center;
@@ -267,17 +347,20 @@ body {
   color: #444;
 }
 
+/* ------------------ ROOM CARD WRAPPER (no animation) ------------------ */
 .card {
   max-width: 950px;
-  margin: 20px auto;
+  margin: 25px auto;
   display: flex;
-  background: #fff;
-  border-radius: 12px;
+  flex-direction: row;
+  background: #fff; /* nền nhẹ */
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); /* bóng nhẹ cố định */
   align-items: center;
 }
 
+/* Hình bên trái */
 .card .left {
   flex: 0 0 300px;
   height: 220px;
@@ -289,45 +372,47 @@ body {
   object-fit: cover;
 }
 
+/* Nội dung bên phải */
 .card .right {
   flex: 1;
-  padding: 20px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.card.right h2 {
+/* Tiêu đề và thông tin */
+.card .right h2 {
   margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #222;
 }
 
-.card.right p:last-child {
-  color: #475569;
-  font-weight: bold;
-  font-size: 18px;
+.card .right p {
+  margin: 4px 0;
+  color: #444;
+  font-size: 15px;
 }
 
-
-
-@media (max-width:768px) {
-  .booking-bar {
-    flex-direction: column;
-    gap: 12px;
-    margin: -40px 20px 30px;
-  }
-
-  .card {
-    flex-direction: column;
-    margin: 20px;
-  }
-
-  .card .left {
-    height: 220px;
-    width: 100%;
-  }
-
-  .footer {
-    grid-template-columns: 1fr;
-  }
+/* Dòng chứa giá và nút */
+.card .bottom {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
 }
-.select-btn{
+
+/* Giá tiền */
+.card .price {
+  font-weight: 700;
+  font-size: 16px;
+  color: #000;
+}
+
+/* Nút chọn phòng */
+.select-btn {
   background: #6b6b50;
   color: white;
   font-weight: bold;
@@ -336,53 +421,32 @@ body {
   border-radius: 12px;
   cursor: pointer;
   font-size: 14px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+/* Giữ nguyên màu khi hover, không hiệu ứng */
+.select-btn:hover {
+  background: #6b6b50;
+  box-shadow: none;
+  transform: none;
 }
 
-/* Footer */
-.footer {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  padding: 40px 60px;
-  background-color: #fcfde6;
-  gap: 20px;
+/* Responsive */
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .card .left {
+    width: 100%;
+    height: 200px;
+  }
+
+  .card .bottom {
+    justify-content: center;
+  }
 }
 
-.footer-left .brand {
-  font-size: 26px;
-  font-family: "Great Vibes", cursive;
-  color: #444;
-}
-
-.footer-middle ul {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-middle ul li {
-  margin: 8px 0;
-}
-
-.footer-middle ul li a {
-  text-decoration: none;
-  color: #333;
-  font-size: 16px;
-  transition: 0.3s;
-}
-
-.footer-middle ul li a:hover {
-  color: #f8b500;
-}
-
-.footer-right h3 {
-  margin-bottom: 12px;
-  color: #333;
-}
 /* ===== MINI BILL POPUP ===== */
 .bill-popup {
   position: fixed;
@@ -439,4 +503,43 @@ button:hover {
     opacity: 1;
     transform: translateY(0);
   }
+}
+/* ----------- FOOTER ------------------*/
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 40px 60px;
+  background-color: #EFEBE0;
+  gap: 20px;
+}
+
+.footer-left .brand {
+  font-size: 26px;
+  font-family: "Great Vibes", cursive;
+  color: #444;
+}
+
+.footer-middle ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-middle ul li {
+  margin: 8px 0;
+}
+
+.footer-middle ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.footer-middle ul li a:hover {
+  color: #000000;
+}
+
+.footer-right h3 {
+  margin-bottom: 12px;
+  color: #333;
 }
