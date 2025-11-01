@@ -76,7 +76,7 @@ function initPaymentOptions() {
 
   paymentRadios.forEach(radio => {
     radio.addEventListener("change", () => {
-      if (radio.nextSibling.textContent.includes("Chuyển khoản") && radio.checked) {
+      if (radio.nextSibling.textContent.includes("Bank transfer") && radio.checked) {
         bankInfoDiv.style.display = "block";
       } else if (radio.checked) {
         bankInfoDiv.style.display = "none";
