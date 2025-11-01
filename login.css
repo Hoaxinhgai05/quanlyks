@@ -5,49 +5,7 @@
       background-size: cover;
       font-family: Arial, sans-serif;
     }
-
-    /* Nút menu (icon 3 gạch) */
-    .menu-btn {
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      font-size: 28px;
-      cursor: pointer;
-      color: white;
-      background: rgba(236, 248, 196, 0.5);
-      padding: 8px 12px;
-      border-radius: 5px;
-      z-index: 1100;
-    }
-
-    /* Sidebar menu ẩn */
-    .sidebar {
-      height: 100%;
-      width: 0;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background: #6b6d50; /* cam */
-      overflow-x: hidden;
-      transition: 0.3s;
-      padding-top: 60px;
-      z-index: 1000;
-    }
-
-    .sidebar a {
-      display: block;
-      padding: 15px 25px;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .sidebar a:hover {
-      background: rgba(254, 255, 240, 0.95);
-    }
-
-    /* Login box */
+    /* ------------LOGIN BOX-------------- */
     .login-box {
       width: 420px;
       margin: 150px auto;
@@ -69,7 +27,7 @@
       border-radius: 5px;
     }
 
-    /* Nút login */
+    /* ------NÚT LOGIN------------- */
     .btn-login {
       width: 95%;
       padding: 10px;
