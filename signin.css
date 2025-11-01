@@ -10,50 +10,9 @@
       align-items: center;
     }
 
-    /* Nút menu (3 gạch) */
-    .menu-btn {
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      font-size: 28px;
-      cursor: pointer;
-      color: black;
-      background: rgba(254, 254, 254, 0.5);
-      padding: 8px 12px;
-      border-radius: 5px;
-      z-index: 1100;
-    }
-
-    /* Sidebar */
-    .sidebar {
-      height: 100%;
-      width: 0;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background: #6b6b50;
-      overflow-x: hidden;
-      transition: 0.3s;
-      padding-top: 60px;
-      z-index: 1000;
-    }
-
-    .sidebar a {
-      display: block;
-      padding: 15px 25px;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .sidebar a:hover {
-      background: rgba(254, 255, 240, 0.95);
-    }
-
-    /* Signin box */
+    /* -----------SIGN IN BOX----------- */
     .signin-box {
-      width: 420px; /* tăng độ rộng */
+      width: 420px;
       padding: 30px;
       background: rgba(255, 255, 255, 0.85);
       border-radius: 12px;
@@ -65,16 +24,18 @@
     .signin-box h2 {
       margin-bottom: 20px;
     }
-.signin-box input {
+
+    .signin-box input {
       padding: 10px;
       font-size: 14px;
       border: 1px solid #ccc;
       border-radius: 6px;
     }
-/* Grid 2 cột */
+
+    /* Grid 2 cột */
     .form-grid {
       display: grid;
-      grid-template-columns: repeat(2,1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 12px;
     }
 
@@ -90,7 +51,7 @@
       outline: none;
     }
 
-    /* Nút signin */
+    /* --------NÚT SIGN IN------------ */
     .btn-signin {
       margin-top: 18px;
       width: 100%;
