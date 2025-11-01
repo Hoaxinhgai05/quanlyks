@@ -6,52 +6,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Booking</title>
   <link rel="stylesheet" href="finish.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700;900&family=Roboto:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
- 
-  <header class="header">
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
-        <div id="mySidebar" class="sidebar">
-            <a href="#">Home</a>
-            <a href="#">Accommodation</a>
-            <a href="book.html">Booking</a>
-            <a href="#">Services</a>
-            <a href="lienhe.html">Contact Us</a>
-            <a href="dangnhap.html">Login</a>
-            <a href="dangki.html">Signin</a>
-        </div>
-    <div class="logo">Prestige Manor</div>
+  <!-- ================= HEADER ================= -->
+  <header class="main-header">
+    <div class="header-left">
+      <button class="menu-toggle" aria-label="Menu" onclick="toggleMenu()">☰</button>
+    </div>
+    <div class="logo-container">
+      <h1 class="logo-text">Prestige Manor</h1>
+    </div>
   </header>
-  <!-- Booking Bar -->
-  <nav class="booking-bar">
-  <div class="booking-fields">
-            <div class="field">
-                <label><i class="fa fa-calendar"></i> Check-in</label>
-                <div class="input-wrapper">
-                    <input id="checkin" type="text" placeholder="dd/mm/yyyy">
-                    <span class="calendar-icon">🗓 </span>
-                </div>
-            </div>
 
-            <div class="field">
-                <label><i class="fa fa-calendar"></i> Check-out</label>
-                <div class="input-wrapper">
-                    <input id="checkout" type="text" placeholder="dd/mm/yyyy">
-                    <span class="calendar-icon">🗓</span>
-                </div>
-            </div>
+  <!-- ================= SIDEBAR ================= -->
+  <div id="mySidebar" class="sidebar">
+    <a href="#">HOME</a>
+    <a href="#">ACCOMMODATION</a>
+    <a href="book.html">BOOKING</a>
+    <a href="#">SERVICES</a>
+    <a href="lienhe.html">CONTACT US</a>
+    <a href="dangnhap.html">LOGIN</a>
+    <a href="dangki.html">SIGN IN</a>
+  </div>
 
-            <!-- Guests dropdown -->
-            <div class="guests-dropdown">
-  <label class="field-label">Guests</label>
+  <!-- ================= BOOKING BAR ================= -->
+  <div class="booking-bar-wrapper">
+    <div class="booking-bar">
+      <div class="booking-item online-info">
+        <p class="label">BOOK ONLINE</p>
+        <p class="guarantee">Guaranteed accommodation</p>
+      </div>
 
-  <div class="guests-wrapper">
-    <div class="guests-display" id="guestBox">2 Adults, 0 Children</div>
+      <div class="booking-item date-input">
+        <p class="label">CHECK-IN</p>
+        <div class="input-field">
+          <input type="text" id="checkin" placeholder="Select date">
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+      </div>
 
-    <!-- Popup -->
-    <div class="guests-popup" id="guestsPopup" style="display:none;">
-                    <div class="room">
+      <div class="booking-item date-input">
+        <p class="label">CHECK-OUT</p>
+        <div class="input-field">
+          <input type="text" id="checkout" placeholder="Select date">
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+      </div>
+
+      <!-- Guests dropdown -->
+      <div class="guests-dropdown">
+        <label class="field-label">GUESTS</label>
+        <div class="guests-wrapper">
+          <div class="guests-display" id="guestBox">2 Adults, 0 Children</div>
+
+          <!-- Popup -->
+          <div class="guests-popup" id="guestsPopup" style="display:none;">
+            <div class="room">
               <div class="room-header">
                 <span>Room 1</span>
               </div>
@@ -78,129 +93,133 @@
                 </div>
               </div>
             </div>
-                    <button class="add-room" id="addRoomBtn">+ ADD A ROOM</button>
-                    <button class="done" id="doneBtn">DONE</button>
-                </div>
-
-            </div>
-    </nav>
-
+            <button class="add-room" id="addRoomBtn">+ ADD A ROOM</button>
+            <button class="done" id="doneBtn">DONE</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <section class="select">
     <h2>Details of your stay</h2>
   </section>
 
-  <!-- BOOKING FORM + PAYMENT -->
-<div class="booking-wrapper">
+  <!-- =================BOOKING FORM + PAYMENT ===============-->
+  <div class="booking-wrapper">
 
-  <!-- CUSTOMER SECTION -->
-  <div class="customer-section">
-    <h2>Customer</h2>
-    <p>I'm booking for</p>
-    <div class="booking-for">
-      <button class="active">Myself</button>
-      <button>Someone else</button>
+    <!-- ===============CUSTOMER SECTION ===============-->
+    <div class="customer-section">
+      <h2>Customer</h2>
+      <p>I'm booking for</p>
+      <div class="booking-for">
+        <button class="active">Myself</button>
+        <button>Someone else</button>
+      </div>
+
+      <form class="booking-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First name</label>
+            <input type="text" placeholder="Enter your first name" required>
+          </div>
+          <div class="form-group">
+            <label>Last name</label>
+            <input type="text" placeholder="Enter your last name" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" placeholder="Enter your phone">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="Enter your email" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Country</label>
+          <select>
+            <option>🇻🇳 Vietnam</option>
+            <option>🇺🇸 United States</option>
+            <option>🇫🇷 France</option>
+          </select>
+        </div>
+
+        <div class="consent">
+          <input type="checkbox" id="consent">
+          <label for="consent">I give my consent to receive news and special offers</label>
+        </div>
+
+        <h3>Additional Information</h3>
+        <div class="form-group">
+          <label>Personal request</label>
+          <textarea placeholder="Write your request here..."></textarea>
+        </div>
+      </form>
     </div>
 
-    <form class="booking-form">
-      <div class="form-row">
-        <div class="form-group">
-          <label>First name</label>
-          <input type="text" placeholder="Enter your first name" required>
-        </div>
-        <div class="form-group">
-          <label>Last name</label>
-          <input type="text" placeholder="Enter your last name" required>
+    <!-- ================PAYMENT SECTION================ -->
+    <div class="payment-methods">
+      <h2>Payment Methods</h2>
+
+      <div class="terms-area">
+        <input type="checkbox" id="agree-terms">
+        <label for="agree-terms">I agree with <a href="#">Terms & Conditions</a> and <a href="#">Cancellation
+            Policy</a></label>
+      </div>
+
+      <div class="cancel-box">
+        <h3>Cancellation Policy</h3>
+        <p>You can cancel or modify your booking free of charge up to 48 hours before arrival.</p>
+      </div>
+
+      <div class="payment-options">
+        <h3>Payment Options</h3>
+
+        <label class="payment-choice">
+          <input type="radio" name="payment" value="counter" checked>
+          💳 Pay at the counter
+        </label>
+
+        <label class="payment-choice">
+          <input type="radio" name="payment" value="bank">
+          💸 Bank transfer
+        </label>
+
+        <div class="bank-info" style="display: none;">
+          <p><strong>Bank:</strong> Techcombank</p>
+          <p><strong>Account holder:</strong> CÔNG TY TNHH PRESTIGE MANOR (PHẠM THỊ HOA)</p>
+          <p><strong>Account number:</strong> 9888811112005</p>
+          <p><strong>Note:</strong> Guest name + Booking code</p>
+          <img src="QR.jpg" alt="QR Code chuyển khoản" class="qr-image">
         </div>
       </div>
 
-      <div class="form-row">
-        <div class="form-group">
-          <label>Phone</label>
-          <input type="tel" placeholder="Enter your phone">
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" placeholder="Enter your email" required>
-        </div>
+      <div class="book-box">
+        <p class="price-total">1.299.000 ₫</p>
+        <button class="btn-book" id="bookNow">BOOK</button>
       </div>
-
-      <div class="form-group">
-        <label>Country</label>
-        <select>
-          <option>🇻🇳 Vietnam</option>
-          <option>🇺🇸 United States</option>
-          <option>🇫🇷 France</option>
-        </select>
-      </div>
-
-      <div class="consent">
-        <input type="checkbox" id="consent">
-        <label for="consent">I give my consent to receive news and special offers</label>
-      </div>
-
-      <h3>Additional Information</h3>
-      <div class="form-group">
-        <label>Personal request</label>
-        <textarea placeholder="Write your request here..."></textarea>
-      </div>
-    </form>
+    </div>
   </div>
 
-  <!-- PAYMENT SECTION -->
-  <div class="payment-methods">
-    <h2>Payment Methods</h2>
-
-    <div class="terms-area">
-      <input type="checkbox" id="agree-terms">
-      <label for="agree-terms">I agree with <a href="#">Terms & Conditions</a> and <a href="#">Cancellation Policy</a></label>
-    </div>
-
-    <div class="cancel-box">
-      <h3>Cancellation Policy</h3>
-      <p>You can cancel or modify your booking free of charge up to 48 hours before arrival.</p>
-    </div>
-
-    <div class="payment-options">
-  <h3>Payment Options</h3>
-
-  <label class="payment-choice">
-    <input type="radio" name="payment" checked>
-    💳 Thanh toán trực tiếp tại quầy
-  </label>
-
-  <label class="payment-choice">
-    <input type="radio" name="payment">
-    💸 Chuyển khoản ngân hàng (Bank Transfer)
-  </label>
-
-  <div class="bank-info" style="display: none;">
-    <p><strong>Ngân hàng:</strong> Teckcombank</p>
-    <p><strong>Chủ tài khoản:</strong> CÔNG TY TNHH PRESTIGE MANOR (PHẠM THỊ HOA)</p>
-    <p><strong>Số tài khoản:</strong> 9888811112005</p>
-    <p><strong>Nội dung:</strong> Tên khách + Mã đặt phòng</p>
-    <p><strong>Quét mã để chuyển khoản nhanh:</strong></p>
-    <img src="QR.jpg" alt="QR Code chuyển khoản" class="qr-image">
+  <!--=============BILL (bubble style)================ -->
+  <div class="bill-bubble" id="billBubble">
+    🧾 My Bill
   </div>
-</div>
 
-
-    <div class="book-box">
-      <p class="price-total">$220.00</p>
-      <button class="btn-book" id="bookNow">BOOK</button>
-
-    </div>
-  </div>
-</div>
-
-    <!-- Bill -->
-  <div class="bill">
+  <div class="bill" id="billBox">
     <h3>My Booking Bill</h3>
     <div id="bill-items"></div>
-  <p id="roomPrice"></p>
-  <p id="servicesPrice"></p>
-  <p id="totalPrice"></p>
-</div>
+    <p id="roomPrice"></p>
+    <p id="servicesPrice"></p>
+    <p id="totalPrice"></p>
+  </div>
+
+  <!--==============FOOTER=============-->
   <footer class="footer">
     <div class="footer-left">
       <p class="brand">Prestige Manor</p>
@@ -220,13 +239,26 @@
       <p>▶ Location: Quy Nhon</p>
     </div>
   </footer>
+
+  <!--================SCRIPT=====================-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="guest.js"></script>
-   <script src="finish.js"></script>
-   <script>
-  
-</script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="guest.js"></script>
+  <script src="script.js"></script>
+  <script src="finish.js"></script>
+  <script>// Toggle sidebar
+    function toggleMenu() {
+      document.getElementById("mySidebar").classList.toggle("active");
+    }
+
+    // Bill open/close
+    const billBubble = document.getElementById("billBubble");
+    const billBox = document.getElementById("billBox");
+
+    billBubble.addEventListener("click", () => {
+      billBox.classList.toggle("show");
+    });
+  </script>
 </body>
 
 </html>
