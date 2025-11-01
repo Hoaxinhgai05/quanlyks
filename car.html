@@ -1,154 +1,161 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Contact Us</title>
-    <link rel="stylesheet" href="car.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prestige Manor - Khách sạn</title>
+  <link rel="stylesheet" href="car.css">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="menu-btn" onclick="toggleMenu()">☰</div>
-        <div id="mySidebar" class="sidebar">
-            <a href="#">Home</a>
-            <a href="#">Accommodation</a>
-            <a href="">Booking</a>
-            <a href="#">Services</a>
-            <a href="lienhe..html">Contact Us</a>
-            <a href="dangnhap.html">Login</a>
-            <a href="dangki.html">Signin</a>
-        </div>
-        <div class="logo">Prestige Manor</div>
-        <a href="book.html">
-            <button class="btn-book">BOOK DIRECT</button></a>
-    </header>
-
-    <!-- Booking -->
-
-    <nav class="booking-bar">
-        <div class="booking-title">
-            <h3>BOOK ONLINE</h3>
-            <p>Guaranteed accommodation</p>
-        </div>
-
-        <div class="booking-fields">
-            <div class="field">
-                <label><i class="fa fa-calendar"></i> Check-in</label>
-                <div class="input-wrapper">
-                    <input id="checkin" type="text" placeholder="dd/mm/yyyy">
-                    <span class="calendar-icon">🗓 </span>
-                </div>
-            </div>
-
-            <div class="field">
-                <label><i class="fa fa-calendar"></i> Check-out</label>
-                <div class="input-wrapper">
-                    <input id="checkout" type="text" placeholder="dd/mm/yyyy">
-                    <span class="calendar-icon">🗓</span>
-                </div>
-            </div>
-
-            <!-- Guests dropdown -->
-            <div class="guests-dropdown">
-                <label class="field-label">Guests</label>
-
-                <div class="guests-wrapper">
-                    <div class="guests-display" id="guestBox">2 Adults, 0 Children</div>
-
-                    <!-- Popup -->
-                    <div class="guests-popup" id="guestsPopup" style="display:none;">
-                        <div class="room">
-                            <div class="room-header">
-                                <span>Room 1</span>
-                            </div>
-                            <div class="controls">
-                                <div class="control">
-                                    <label>Adults</label>
-                                    <button class="minus">-</button>
-                                    <span class="count">2</span>
-                                    <button class="plus">+</button>
-                                </div>
-                                <div class="control">
-                                    <label>Children</label>
-                                    <button class="minus">-</button>
-                                    <span class="count">0</span>
-                                    <button class="plus">+</button>
-                                </div>
-                                <div class="control">
-                                    <label>Type Room</label>
-                                    <select class="room-type">
-                                        <option value="Single Room">Single Room</option>
-                                        <option value="Twin Room">Twin Room</option>
-                                        <option value="VIP Room">VIP Room</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <button class="add-room" id="addRoomBtn">+ ADD A ROOM</button>
-                        <button class="done" id="doneBtn">DONE</button>
-                    </div>
-                </div>
-            </div>
-            <a href="book.html">
-                <button class="btn-find">FIND ROOM</button></a>
-        </div>
-    </nav>
-    <div class="transportation">
-        <h2>Transportation</h2>
-        <div class="transportation-content">
-            <div class="transport-text">
-                <p>Enjoy the smooth and carefree transportation by Prestige Manor service.
-                    The transportation includes services for 4 guests up to 16 guests.</p>
-                <p class="phone">
-                    <span class="icon">📞</span> +8494271
-                </p>
-            </div>
-            <div class="transport-img">
-                <img src="car.jpg" alt="Transportation service">
-            </div>
-        </div>
-        <div class="transport-description">
-            <p>
-                Guests can conveniently book their airport transfer or private car service directly
-                when making their room reservation, or contact our concierge team at any time before arrival.
-                Simply let us know your flight details, and we’ll take care of the rest. From the moment you land,
-                you’ll be greeted with a warm welcome and escorted in a clean, air-conditioned vehicle directly
-                to our boutique hotel in Hanoi Old Quarter.
-            </p>
-            <p>Our transportation options include:</p>
-            <ul>
-                <li>Private airport pick-up and drop-off</li>
-                <li>Daily car hire with driver</li>
-            </ul>
-        </div>
+  <!-- ================= HEADER ================= -->
+  <header class="main-header">
+    <div class="header-left">
+      <button class="menu-toggle" aria-label="Menu" onclick="toggleMenu()">☰</button>
     </div>
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-left">
-            <p class="brand">Prestige Manor</p>
-        </div>
-        <div class="footer-middle">
-            <ul>
-                <li><a href="#">▶ Home</a></li>
-                <li><a href="#">▶ Accommodation</a></li>
-                <li><a href="book.html">▶ Book Direct</a></li>
-                <li><a href="#">▶ PM Restaurant</a></li>
-                <li><a href="spa.html">▶ PM Spa</a></li>
-            </ul>
-        </div>
-        <div class="footer-right">
-            <h3>CONTACT US</h3>
-            <p>▶ Hotline/Zalo: +84 94271</p>
-            <p>▶ Location: Quy Nhon</p>
-        </div>
-    </footer>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="guest.js"></script>
-</body>
+    <div class="logo-container">
+      <h1 class="logo-text">Prestige Manor</h1>
+    </div>
+    <div class="header-right">
+      <a href="#" class="book-direct">BOOK DIRECT</a>
+    </div>
+  </header>
 
+  <!-- ================= SIDEBAR ================= -->
+  <div id="mySidebar" class="sidebar">
+    <a href="#">HOME</a>
+    <a href="#">ACCOMMODATION</a>
+    <a href="book.html">BOOKING</a>
+    <a href="#">SERVICES</a>
+    <a href="lienhe.html">CONTACT US</a>
+    <a href="dangnhap.html">LOGIN</a>
+    <a href="dangki.html">SIGN IN</a>
+  </div>
+
+  <!-- ================= BOOKING BAR ================= -->
+  <div class="booking-bar-wrapper">
+    <div class="booking-bar">
+      <div class="booking-item online-info">
+        <p class="label">BOOK ONLINE</p>
+        <p class="guarantee">Guaranteed accommodation</p>
+      </div>
+
+      <div class="booking-item date-input">
+        <p class="label">CHECK-IN</p>
+        <div class="input-field">
+          <input type="text" id="checkin" placeholder="Select date">
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+      </div>
+
+      <div class="booking-item date-input">
+        <p class="label">CHECK-OUT</p>
+        <div class="input-field">
+          <input type="text" id="checkout" placeholder="Select date">
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+      </div>
+
+      <!-- Guests dropdown -->
+      <div class="guests-dropdown">
+        <label class="field-label">GUESTS</label>
+        <div class="guests-wrapper">
+          <div class="guests-display" id="guestBox">2 Adults, 0 Children</div>
+
+          <!-- Popup -->
+          <div class="guests-popup" id="guestsPopup" style="display:none;">
+            <div class="room">
+              <div class="room-header">
+                <span>Room 1</span>
+              </div>
+              <div class="controls">
+                <div class="control">
+                  <label>Adults</label>
+                  <button class="minus">-</button>
+                  <span class="count">2</span>
+                  <button class="plus">+</button>
+                </div>
+                <div class="control">
+                  <label>Children</label>
+                  <button class="minus">-</button>
+                  <span class="count">0</span>
+                  <button class="plus">+</button>
+                </div>
+                <div class="control">
+                  <label>Type Room</label>
+                  <select class="room-type">
+                    <option value="Single Room">Single Room</option>
+                    <option value="Twin Room">Twin Room</option>
+                    <option value="VIP Room">VIP Room</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <button class="add-room" id="addRoomBtn">+ ADD A ROOM</button>
+            <button class="done" id="doneBtn">DONE</button>
+          </div>
+        </div>
+      </div>
+      <a href="book.html">
+      <button class="find-room-btn">FIND ROOM</button></a>
+    </div>
+  </div>
+
+  <!-- ================= TRANSPORTATION ================= -->
+  <div class="transportation">
+    <h2>Transportation</h2>
+    <div class="transportation-content">
+      <div class="transport-text">
+        <p>Enjoy the smooth and carefree transportation by Prestige Manor service.
+          The transportation includes services for 4 guests up to 16 guests.</p>
+        <p class="phone">
+          <span class="icon">📞</span> +8494271
+        </p>
+      </div>
+      <div class="transport-img">
+        <img src="car.jpg" alt="Transportation service">
+      </div>
+    </div>
+    <div class="transport-description">
+      <p>
+        Guests can conveniently book their airport transfer or private car service directly
+        when making their room reservation, or contact our concierge team at any time before arrival.
+        Simply let us know your flight details, and we’ll take care of the rest.
+      </p>
+      <p>Our transportation options include:</p>
+      <ul>
+        <li>Private airport pick-up and drop-off</li>
+        <li>Daily car hire with driver</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="footer-left">
+      <p class="brand">Prestige Manor</p>
+    </div>
+    <div class="footer-middle">
+      <ul>
+        <li><a href="#">▶ Home</a></li>
+        <li><a href="#">▶ Accommodation</a></li>
+        <li><a href="book.html">▶ Book Direct</a></li>
+        <li><a href="#">▶ PM Restaurant</a></li>
+        <li><a href="spa.html">▶ PM Spa</a></li>
+      </ul>
+    </div>
+    <div class="footer-right">
+      <h3>CONTACT US</h3>
+      <p>▶ Hotline/Zalo: +84 94271</p>
+      <p>▶ Location: Quy Nhon</p>
+    </div>
+  </footer>
+
+  <!-- ================= SCRIPT ================= -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="guest.js"></script>
+</body>
 </html>
