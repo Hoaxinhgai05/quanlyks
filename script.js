@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const continueBtn = document.getElementById("continueBtn");
   if (continueBtn) {
     continueBtn.addEventListener("click", () => {
-      window.location.href = "service.html";
+      window.location.href = "dichvu.html";
     });
   }
 
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// =================== PLANS PAGE ===================
+// =================== SERVICES PAGE ===================
 
 // Thêm dịch vụ (ngoại trừ Breakfast)
 function addService(name, price) {
