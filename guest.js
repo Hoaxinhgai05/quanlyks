@@ -1,29 +1,30 @@
-// ================= MENU SIDEBAR =================
+// ====================== TOGGLE SIDEBAR MENU ======================
+// Hoạt động đúng với: <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 function toggleMenu() {
-  const sidebar = document.getElementById("mySidebar");
-  if (sidebar) {
-    sidebar.style.width = sidebar.style.width === "250px" ? "0" : "250px";
-  }
+  const sidebar = document.getElementById("mySidebar");
+  const btn = document.querySelector(".menu-toggle");
+
+  // Toggle (bật / tắt) class active → CSS sẽ điều khiển left: -250px / 0
+  sidebar.classList.toggle("active");
+  btn.classList.toggle("active");
+
+  // Đồng bộ inline style để tránh bị “kẹt” ở trạng thái cũ
+  if (sidebar.classList.contains("active")) {
+    sidebar.style.left = "0px";
+  } else {
+    sidebar.style.left = "-250px";
+  }
 }
 
-// ================= KHỞI TẠO FLATPICKR =================
-document.addEventListener("DOMContentLoaded", () => {
-  flatpickr("#checkin", {
-    dateFormat: "d/m/Y",
-    onChange: (selectedDates, dateStr) => {
-      saveGuestsData(); // cập nhật dữ liệu chung
-    },
-  });
+// ====================== DATE PICKER (Flatpickr) ======================
+flatpickr("#checkin", {
+  dateFormat: "d/m/Y",
+  defaultDate: "22/09/2025",
+});
 
-  flatpickr("#checkout", {
-    dateFormat: "d/m/Y",
-    onChange: (selectedDates, dateStr) => {
-      saveGuestsData(); // cập nhật dữ liệu chung
-    },
-  });
-
-  initGuestsPopup();
-  restoreGuestData(); // khôi phục dữ liệu cũ nếu có
+flatpickr("#checkout", {
+  dateFormat: "d/m/Y",
+  defaultDate: "26/09/2025",
 });
 
 // ================= KHỞI TẠO POPUP GUESTS =================
@@ -190,7 +191,6 @@ function restoreGuestData() {
 
   const popup = document.getElementById("guestsPopup");
   const baseRoom = popup.querySelector(".room");
-  const addBtn = document.getElementById("addRoomBtn");
 
   // Xóa tất cả phòng trừ phòng đầu
   popup.querySelectorAll(".room:not(:first-child)").forEach(r => r.remove());
@@ -218,3 +218,9 @@ function restoreGuestData() {
 
   updateGuestBox();
 }
+
+// ================= KHỞI TẠO TẤT CẢ KHI TRANG TẢI =================
+document.addEventListener("DOMContentLoaded", function() {
+  initGuestsPopup();
+  restoreGuestData();
+});
