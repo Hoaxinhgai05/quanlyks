@@ -6,46 +6,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hotel Booking</title>
   <link rel="stylesheet" href="book.css">
+<link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700;900&family=Roboto:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
-  <header class="header">
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
-    <div id="mySidebar" class="sidebar">
-      <a href="#">Home</a>
-      <a href="#">Accommodation</a>
-      <a href="book.html">Booking</a>
-      <a href="#">Services</a>
-      <a href="lienhe.html">Contact Us</a>
-      <a href="dangnhap.html">Login</a>
-      <a href="dangki.html">Signin</a>
+  <!-- ================= HEADER ================= -->
+  <header class="main-header">
+    <div class="header-left">
+      <button class="menu-toggle" aria-label="Menu" onclick="toggleMenu()">☰</button>
     </div>
-    <div class="logo">Prestige Manor</div>
+    <div class="logo-container">
+      <h1 class="logo-text">Prestige Manor</h1>
+    </div>
   </header>
 
-  <section class="banner"></section>
+  <!-- ================= SIDEBAR ================= -->
+  <div id="mySidebar" class="sidebar">
+    <a href="#">HOME</a>
+    <a href="#">ACCOMMODATION</a>
+    <a href="book.html">BOOKING</a>
+    <a href="#">SERVICES</a>
+    <a href="lienhe.html">CONTACT US</a>
+    <a href="dangnhap.html">LOGIN</a>
+    <a href="dangki.html">SIGN IN</a>
+  </div>
 
-  <nav class="booking-bar">
-    <div class="booking-fields">
-      <div class="field">
-        <label><i class="fa fa-calendar"></i> Check-in</label>
-        <div class="input-wrapper">
-          <input id="checkin" type="text" placeholder="dd/mm/yyyy">
-          <span class="calendar-icon">🗓 </span>
+  <!-- ================= BOOKING BAR ================= -->
+  <div class="booking-bar-wrapper">
+    <div class="booking-bar">
+      <div class="booking-item online-info">
+        <p class="label">BOOK ONLINE</p>
+        <p class="guarantee">Guaranteed accommodation</p>
+      </div>
+
+      <div class="booking-item date-input">
+        <p class="label">CHECK-IN</p>
+        <div class="input-field">
+          <input type="text" id="checkin" placeholder="Select date">
+          <i class="fas fa-calendar-alt"></i>
         </div>
       </div>
 
-      <div class="field">
-        <label><i class="fa fa-calendar"></i> Check-out</label>
-        <div class="input-wrapper">
-          <input id="checkout" type="text" placeholder="dd/mm/yyyy">
-          <span class="calendar-icon">🗓</span>
+      <div class="booking-item date-input">
+        <p class="label">CHECK-OUT</p>
+        <div class="input-field">
+          <input type="text" id="checkout" placeholder="Select date">
+          <i class="fas fa-calendar-alt"></i>
         </div>
       </div>
 
       <!-- Guests dropdown -->
       <div class="guests-dropdown">
-        <label>Guests</label>
+        <label class="field-label">GUESTS</label>
         <div class="guests-wrapper">
           <div class="guests-display" id="guestBox">2 Adults, 0 Children</div>
 
@@ -78,69 +93,73 @@
                 </div>
               </div>
             </div>
-
             <button class="add-room" id="addRoomBtn">+ ADD A ROOM</button>
             <button class="done" id="doneBtn">DONE</button>
           </div>
         </div>
       </div>
     </div>
-  </nav>
+  </div>
 
   <section class="select">
     <h2>Select a Room</h2>
   </section>
 
-  <!-- Room options -->
-  <section class="card">
-    <div class="left"><img src="single.jpg"></div>
-    <div class="right">
-      <h2>Single Room</h2>
-      <p>👥 Up to 2 Guests</p>
-      <p>📐 20 m²</p>
-      <p> 🌐 Wi-Fi</p>
-      <p>❄ Air conditioning</p>
-      <p>1.399.000 VND</p>
+  <!-- =========ROOM OPTIONS=============== -->
+<section class="card">
+  <div class="left"><img src="single.jpg"></div>
+  <div class="right">
+    <h2>Single Room</h2>
+    <p>👥 Up to 2 Guests</p>
+    <p>📐 20 m²</p>
+    <p>🌐 Wi-Fi</p>
+    <p>❄ Air conditioning</p>
+    <div class="bottom">
+      <p class="price">1.399.000 VND</p>
+      <button class="select-btn" data-room-type="Single Room" data-price="1399000" onclick="selectRoom(this)">Select</button>
     </div>
-    <button class="select-btn" data-room-type="Single Room" data-price="1399000" onclick="selectRoom(this)">Select</button>
-  </section>
+  </div>
+</section>
 
-  <section class="card">
-    <div class="left"><img src="double.jpg"></div>
-    <div class="right">
-      <h2>Twin Room</h2>
-      <p>👥 Up to 4 Guests</p>
-      <p>📐 20 m²</p>
-      <p> 🌐 Wi-Fi</p>
-      <p>❄ Air conditioning</p>
-      <p>1.699.000 VND</p>
+<section class="card">
+  <div class="left"><img src="double.jpg"></div>
+  <div class="right">
+    <h2>Twin Room</h2>
+    <p>👥 Up to 4 Guests</p>
+    <p>📐 20 m²</p>
+    <p>🌐 Wi-Fi</p>
+    <p>❄ Air conditioning</p>
+    <div class="bottom">
+      <p class="price">1.699.000 VND</p>
+      <button class="select-btn" data-room-type="Twin Room" data-price="1699000" onclick="selectRoom(this)">Select</button>
     </div>
-   <button class="select-btn" data-room-type="Twin Room" data-price="1699000" onclick="selectRoom(this)">Select</button>
-  </section>
+  </div>
+</section>
 
-  <section class="card">
-    <div class="left"><img src="vip.jpg"></div>
-    <div class="right">
-      <h2>VIP Room</h2>
-      <p>👥 Up to 2 Guests</p>
-      <p>📐 20 m²</p>
-      <p> 🌐 Wi-Fi</p>
-      <p>❄ Air conditioning</p>
-      <p>2.199.000 VND</p>
+<section class="card">
+  <div class="left"><img src="vip.jpg"></div>
+  <div class="right">
+    <h2>VIP Room</h2>
+    <p>👥 Up to 2 Guests</p>
+    <p>📐 20 m²</p>
+    <p>🌐 Wi-Fi</p>
+    <p>❄ Air conditioning</p>
+    <div class="bottom">
+      <p class="price">2.199.000 VND</p>
+      <button class="select-btn" data-room-type="VIP Room" data-price="2199000" onclick="selectRoom(this)">Select</button>
     </div>
-    <button class="select-btn" data-room-type="VIP Room" data-price="2199000" onclick="selectRoom(this)">Select</button>
-  </section>
+  </div>
+</section>
 
-  <!-- MINI BILL POPUP -->
+
+  <!-- ================MINI BILL POPUP================ -->
   <div class="bill-popup" id="billSection" style="display: none;">
     <h3>Your Bill</h3>
     <div id="billList"></div>
     <p><strong>Total:</strong> <span id="totalPrice">0 VND</span></p>
     <button id="continueBtn">Continue Add Service</button>
   </div>
-
-
-
+<!--===========FOOTER=================-->
   <footer class="footer">
     <div class="footer-left">
       <p class="brand">Prestige Manor</p>
@@ -160,7 +179,7 @@
       <p>▶ Location: Quy Nhon</p>
     </div>
   </footer>
-
+<!--=======SCRIPT==============-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="guest.js"></script>
