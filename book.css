@@ -103,7 +103,7 @@ body {
 }
 
 .booking-bar {
-  max-width: 1100px;
+  max-width: 1000px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
