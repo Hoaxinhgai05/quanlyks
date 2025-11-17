@@ -1,68 +1,222 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Signin</title>
-    <link rel="stylesheet" href="signin.css">
+    <title>Prestige Manor - Khách sạn</title>
+    <link rel="stylesheet" href="trangchu.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-
 <body>
-    <!-- ======================FORM SIGNIN=================== -->
-    <div class="signin-box">
-        <h2>SIGN IN</h2>
-        <form onsubmit="return validateForm()">
-            <div class="form-grid">
-                <input type="text" id="firstname" placeholder="Firstname*" required>
-                <input type="text" id="name" placeholder="Name*" required>
-                <input type="text" id="phone" placeholder="Phone Number*" required>
-                <input type="date" id="date" placeholder="Date of birth*" required>
-                <input type="email" id="email" placeholder="Email*" required>
-                <input type="password" id="password" placeholder="Password*" required>
-            </div>
-            <div class="form-actions">
-                <!-- Thay a href bằng nút submit -->
-                <button type="submit" class="btn-signin">Sign in</button>
-            </div>
-        </form>
-        <p>Have an account <a href="dangnhap.html">Login</a></p>
+
+   <header class="main-header">
+    <div class="header-left">
+      <button class="menu-toggle" aria-label="Menu" onclick="toggleMenu()">☰</button>
     </div>
+    <div class="logo-container">
+      <h1 class="logo-text">Prestige Manor</h1>
+    </div>
+    <div class="header-right">
+      <a href="index.html" class="book-direct">BOOK DIRECT</a>
+    </div>
+  </header>
 
-    <!--=================SCRIPT===========-->
-    <script>
-        function validateForm() {
-            let firstname = document.getElementById("firstname").value.trim();
-            let name = document.getElementById("name").value.trim();
-            let phone = document.getElementById("phone").value.trim();
-            let date = document.getElementById("date").value.trim();
-            let email = document.getElementById("email").value.trim();
-            let password = document.getElementById("password").value.trim();
+  <!-- ================= SIDEBAR ================= -->
+  <div id="mySidebar" class="sidebar">
+    <a href="trangchu.html">HOME</a>
+    <a href="gioithieuphong.html">ACCOMMODATION</a>
+    <a href="book.html">BOOKING</a>
+    <a href="gioithieudichvu.html">SERVICES</a>
+    <a href="lienhe.html">CONTACT US</a>
+    <a href="dangnhap.html">LOGIN</a>
+    <a href="index.html">SIGN IN</a>
+  </div>
 
-            if (firstname === "" || name === "" || phone === "" || date === "" || email === "" || password === "") {
-                alert("Vui lòng nhập Firstname, Name, Phone Number, Date of birth, Email và Password!");
-                return false;
-            }
+  <!-- ================= BOOKING BAR ================= -->
+  <div class="booking-bar-wrapper">
+    <div class="booking-bar">
+      <div class="booking-item online-info">
+        <p class="label">BOOK ONLINE</p>
+        <p class="guarantee">Guaranteed accommodation</p>
+      </div>
 
-            // Lưu thông tin vào localStorage
-            const guestInfo = {
-                firstname: firstname,
-                name: name,
-                phone: phone,
-                date: date,
-                email: email,
-                password: password,
-                country: "🇻🇳 Vietnam" // mặc định
-            };
-            localStorage.setItem("guestInfo", JSON.stringify(guestInfo));
+      <div class="booking-item date-input">
+        <p class="label">CHECK-IN</p>
+        <div class="input-field">
+          <input type="text" id="checkin" placeholder="Select date">
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+      </div>
 
-            alert("Đăng ký thành công! Chuyển sang trang booking...");
+      <div class="booking-item date-input">
+        <p class="label">CHECK-OUT</p>
+        <div class="input-field">
+          <input type="text" id="checkout" placeholder="Select date">
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+      </div>
 
-            // Chuyển sang trang book.html
-            window.location.href = "book.html";
-            return false; // ngăn form submit mặc định
-        }
-    </script>
+      <!-- Guests dropdown -->
+      <div class="guests-dropdown">
+        <label class="field-label">GUESTS</label>
+        <div class="guests-wrapper">
+          <div class="guests-display" id="guestBox">2 Adults, 0 Children</div>
+
+          <!-- Popup -->
+          <div class="guests-popup" id="guestsPopup" style="display:none;">
+            <div class="room">
+              <div class="room-header">
+                <span>Room 1</span>
+              </div>
+              <div class="controls">
+                <div class="control">
+                  <label>Adults</label>
+                  <button class="minus">-</button>
+                  <span class="count">2</span>
+                  <button class="plus">+</button>
+                </div>
+                <div class="control">
+                  <label>Children</label>
+                  <button class="minus">-</button>
+                  <span class="count">0</span>
+                  <button class="plus">+</button>
+                </div>
+                <div class="control">
+                  <label>Type Room</label>
+                  <select class="room-type">
+                    <option value="Single Room">Single Room</option>
+                    <option value="Twin Room">Twin Room</option>
+                    <option value="VIP Room">VIP Room</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <button class="add-room" id="addRoomBtn">+ ADD A ROOM</button>
+            <button class="done" id="doneBtn">DONE</button>
+          </div>
+        </div>
+      </div>
+      <a href="index.html">
+        <button class="find-room-btn">FIND ROOM</button></a>
+    </div>
+  </div>
+
+    <main class="content">
+        <div class="hero-image">
+            <img src="trangchu.jpg" alt="Khu nghỉ dưỡng sang trọng Prestige Manor">
+        </div>
+    </main>
+
+    <section class="about-section">
+        <div class="about-container">
+            
+            <div class="about-image-content">
+                <img src="quynhon.jpg" alt="Infinity Pool View" class="about-img">
+            </div>
+
+            <div class="about-text-content">
+                <h2 class="section-title-script">Hotel Prestige Manor Quy Nhon</h2>
+                <p class="section-subtitle">Prestige Manor - An Oasis of Tranquility in Nature.</p>
+                <p class="section-body">
+                    Nestled in a peaceful setting with lush tropical views, Prestige Manor redefines luxury with 
+                    modern elegance and serene charm. Featuring a stylish infinity pool, sophisticated 
+                    rooms, and impeccable service, the hotel is more than just accommodation – it is a haven where you 
+                    can recharge, indulge, and create unforgettable memories.
+                </p>
+                <a href="index.html" class="btn-select-room">Select your room</a>
+            </div>
+
+        </div>
+
+        <div class="decoration-elements">
+            <a href="gioithieuphong.html" class="btn-discover-more">Discover more</a>
+            <div class="decoration-circle circle-large"></div>
+        </div>
+    </section>
+
+    <section class="room-service-section">
+        <div class="room-service-header">
+            <h2 class="section-title-script">Prestige Manor Stay & Service</h2>
+            <div class="service-icons">
+                <div class="icon-item">
+                    <i class="fas fa-bed"></i>
+                    <p>Suites</p>
+                </div>
+                <div class="icon-item">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <p>Services</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="room-gallery-container">
+            <div class="room-gallery-item wide-left">
+                <img src="single.jpg" alt="Single Room">
+                <a href="#" class="btn-room-select btn-room-select-1">Single room</a>
+            </div>
+
+            <div class="room-gallery-item wide-right">
+                <img src="double.jpg" alt="Twin Room">
+                <a href="#" class="btn-room-select btn-room-select-2">Twin room</a>
+            </div>
+
+            <div class="room-gallery-item wide-bottom">
+                <img src="vip.jpg" alt="VIP Room">
+                <a href="#" class="btn-room-select btn-room-select-3">VIP room</a>
+            </div>
+        </div>
+
+        <div class="room-decoration-elements">
+            <div class="decoration-circle circle-small-left"></div>
+            <div class="decoration-circle circle-large-right"></div>
+        </div>
+    </section>
+
+
+    <section class="book-direct-section">
+        <div class="book-direct-container">
+            <div class="direct-image">
+                <img src="booktc.jpg" alt="Prestige Manor Leather Book">
+            </div>
+            
+            <div class="direct-content">
+                <h3 class="direct-title-script">Prestige Manor</h3>
+                <p class="direct-motto">Hurry up and book an appointment to experience the beauty here.</p>
+                
+                <div class="direct-action">
+                    <div class="decorative-line"></div>
+                    <a href="index.html" class="btn-book-direct-lg">BOOK DIRECT</a>
+                </div>
+            </div>
+        </div>
+    </section>
+ <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="footer-left">
+      <p class="brand">Prestige Manor</p>
+    </div>
+    <div class="footer-middle">
+      <ul>
+        <li><a href="trangchu .html">▶ Home</a></li>
+        <li><a href="gioithieuphong.html">▶ Accommodation</a></li>
+        <li><a href="book.html">▶ Book Direct</a></li>
+        <li><a href="nhahang.html">▶ PM Restaurant</a></li>
+        <li><a href="spa.html">▶ PM Spa</a></li>
+      </ul>
+    </div>
+    <div class="footer-right">
+      <h3>CONTACT US</h3>
+      <p>▶ Hotline/Zalo: +84 94271</p>
+      <p>▶ Location: Quy Nhon</p>
+    </div>
+  </footer>
+
+  <!-- ================= SCRIPT ================= -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="guest.js"></script>
 </body>
-
 </html>
