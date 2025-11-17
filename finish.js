@@ -1,12 +1,30 @@
 // ===================== FINISH PAGE =====================
-
-// Chạy khi trang load
 document.addEventListener("DOMContentLoaded", () => {
-  initBill();
-  initBookButton();
-  initPaymentOptions();
-  initBookingFor(); // Xử lý Myself / Someone else
+  fillCustomerForm();    // Tự điền thông tin khách
+  initBill();            // Hiển thị bill
+  initBookButton();      // Nút BOOK
+  initPaymentOptions();  // Chọn phương thức thanh toán
+  initBookingFor();      // Myself / Someone else
 });
+
+// ===================== FILL CUSTOMER FORM =====================
+function fillCustomerForm() {
+  const guestInfo = JSON.parse(localStorage.getItem("guestInfo"));
+  if (!guestInfo) return;
+
+  // Dùng id hoặc placeholder để chắc chắn tìm đúng
+  const firstNameInput = document.querySelector("input#firstnameFinish, input[placeholder='Enter your first name']");
+  const lastNameInput  = document.querySelector("input#nameFinish, input[placeholder='Enter your last name']");
+  const phoneInput     = document.querySelector("input#phoneFinish, input[placeholder='Enter your phone']");
+  const emailInput     = document.querySelector("input#emailFinish, input[placeholder='Enter your email']");
+  const countrySelect  = document.querySelector("select#countryFinish, select");
+
+  if (firstNameInput) firstNameInput.value = guestInfo.firstname || "";
+  if (lastNameInput)  lastNameInput.value  = guestInfo.name || "";
+  if (phoneInput)     phoneInput.value     = guestInfo.phone || "";
+  if (emailInput)     emailInput.value     = guestInfo.email || "";
+  if (countrySelect)  countrySelect.value  = guestInfo.country || "🇻🇳 Vietnam";
+}
 
 // ===================== BILL =====================
 function initBill() {
@@ -18,10 +36,8 @@ function initBill() {
 
   if (!billItemsDiv) return;
 
-  // Lấy dữ liệu từ localStorage (từ plans.html và book.html)
   const selectedRooms = JSON.parse(localStorage.getItem("selectedRooms")) || [];
   let selectedServices = JSON.parse(localStorage.getItem("selectedServices")) || [];
-  const finalTotal = parseInt(localStorage.getItem("finalTotal")) || 0;
 
   // Đảm bảo có đúng 1 breakfast duy nhất
   selectedServices = selectedServices.filter((s, i, arr) =>
@@ -31,20 +47,18 @@ function initBill() {
     selectedServices.unshift({ name: "Breakfast - Included", price: 0, quantity: 1 });
   }
 
-  // ======== Hiển thị phòng ========
+  // ===== Hiển thị phòng =====
   let roomHtml = "<h4>Rooms:</h4>";
   let roomTotal = 0;
-
   selectedRooms.forEach((r, i) => {
     const subtotal = r.price * r.quantity * r.days;
     roomTotal += subtotal;
     roomHtml += `<p>${i + 1}. ${r.roomType} × ${r.quantity} room(s) × ${r.days} day(s) = ${subtotal.toLocaleString()}đ</p>`;
   });
 
-  // ======== Hiển thị dịch vụ ========
+  // ===== Hiển thị dịch vụ =====
   let serviceHtml = "<h4>Services:</h4>";
   let serviceTotal = 0;
-
   selectedServices.forEach(s => {
     if (s.name === "Breakfast - Included") {
       serviceHtml += `<p>Breakfast - Included</p>`;
@@ -55,7 +69,7 @@ function initBill() {
     }
   });
 
-  // ======== Render tổng ========
+  // ===== Render tổng =====
   billItemsDiv.innerHTML = roomHtml + serviceHtml;
   if (roomDiv) roomDiv.textContent = `Room total: ${roomTotal.toLocaleString()}đ`;
   if (servicesDiv) servicesDiv.textContent = `Services total: ${serviceTotal.toLocaleString()}đ`;
@@ -64,11 +78,10 @@ function initBill() {
   if (totalDiv) totalDiv.textContent = `Total: ${grandTotal.toLocaleString()}đ`;
   if (totalDisplay) totalDisplay.textContent = `${grandTotal.toLocaleString()}đ`;
 
-  // Lưu tổng vào localStorage để thanh toán
   localStorage.setItem("finalTotal", grandTotal);
 }
 
-// ===================== PAYMENT =====================
+// ===================== PAYMENT OPTIONS =====================
 function initPaymentOptions() {
   const paymentRadios = document.querySelectorAll('input[name="payment"]');
   const bankInfoDiv = document.querySelector(".bank-info");
@@ -76,7 +89,7 @@ function initPaymentOptions() {
 
   paymentRadios.forEach(radio => {
     radio.addEventListener("change", () => {
-      if (radio.nextSibling.textContent.includes("Bank transfer") && radio.checked) {
+      if (radio.nextSibling && radio.nextSibling.textContent.includes("Bank transfer") && radio.checked) {
         bankInfoDiv.style.display = "block";
       } else {
         bankInfoDiv.style.display = "none";
@@ -93,12 +106,11 @@ function initBookButton() {
   bookBtn.addEventListener("click", (e) => {
     e.preventDefault();
 
-    const fields = document.querySelectorAll("input, select, textarea");
+    const fields = document.querySelectorAll("input[required], select[required], textarea[required]");
     let valid = true;
 
-    // Kiểm tra các trường bắt buộc
     fields.forEach(f => {
-      if (f.hasAttribute("required") && !f.value.trim()) {
+      if (!f.value.trim()) {
         f.style.borderColor = "red";
         valid = false;
       } else {
@@ -106,14 +118,12 @@ function initBookButton() {
       }
     });
 
-    // Điều khoản
     const agree = document.getElementById("agree-terms");
     if (!agree || !agree.checked) {
       alert("⚠️ Please agree to the Terms & Conditions before booking!");
       valid = false;
     }
 
-    // Kiểm tra phương thức thanh toán
     const paymentChecked = document.querySelector('input[name="payment"]:checked');
     if (!paymentChecked) {
       alert("⚠️ Please select a payment method!");
@@ -122,68 +132,32 @@ function initBookButton() {
 
     if (!valid) return;
 
-    alert(`✅ Booking successful! Payment method: ${paymentChecked.nextSibling.textContent.trim()}`);
+    // ===== Thành công =====
+    if (confirm(`✅ Booking successful! Payment method: ${paymentChecked.nextSibling.textContent.trim()}\nClick OK to go to homepage.`)) {
+      // Xoá dữ liệu tạm
+      localStorage.removeItem("guestInfo");
+      localStorage.removeItem("selectedRooms");
+      localStorage.removeItem("selectedServices");
+      localStorage.removeItem("finalTotal");
 
-    // Xóa dữ liệu cũ sau khi đặt thành công
-    localStorage.removeItem("guestInfo");
-    localStorage.removeItem("selectedRooms");
-    localStorage.removeItem("selectedServices");
-    localStorage.removeItem("finalTotal");
+      localStorage.setItem("isLoggedIn", "true");
+      window.location.href = "trangchu.html";
+    }
   });
 }
 
-// ===================== MYSELF / SOMEONE ELSE =====================
+// ===================== BOOKING FOR MYSELF / SOMEONE ELSE =====================
 function initBookingFor() {
-  const bookingForBtns = document.querySelectorAll(".booking-for button");
-  const form = document.querySelector(".booking-form");
-  if (!bookingForBtns || !form) return;
+  const myselfRadio = document.getElementById("bookForMyself");
+  const someoneRadio = document.getElementById("bookForSomeone");
+  const guestForm = document.querySelector(".customer-section");
 
-  const recipientFormHTML = `
-    <h3>Recipient Information</h3>
-    <div class="form-row">
-      <div class="form-group">
-        <label>Recipient First Name</label>
-        <input type="text" placeholder="Enter recipient's first name" required>
-      </div>
-      <div class="form-group">
-        <label>Recipient Last Name</label>
-        <input type="text" placeholder="Enter recipient's last name" required>
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label>Recipient Phone</label>
-        <input type="tel" placeholder="Enter recipient's phone" required>
-      </div>
-      <div class="form-group">
-        <label>Recipient Email</label>
-        <input type="email" placeholder="Enter recipient's email" required>
-      </div>
-    </div>
-    <div class="form-group">
-      <label>Recipient Country</label>
-      <select>
-        <option>🇬🇧 United Kingdom</option>
-        <option>🇻🇳 Vietnam</option>
-        <option>🇺🇸 United States</option>
-        <option>🇫🇷 France</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label>Recipient Request</label>
-      <textarea placeholder="Write recipient's request here..."></textarea>
-    </div>
-  `;
+  if (!myselfRadio || !someoneRadio || !guestForm) return;
 
-  const originalFormHTML = form.innerHTML;
-
-  bookingForBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-      bookingForBtns.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      const isSomeoneElse = btn.textContent.trim().toLowerCase() === "someone else";
-      form.innerHTML = isSomeoneElse ? recipientFormHTML : originalFormHTML;
-    });
+  myselfRadio.addEventListener("change", () => {
+    if (myselfRadio.checked) guestForm.style.display = "none";
+  });
+  someoneRadio.addEventListener("change", () => {
+    if (someoneRadio.checked) guestForm.style.display = "block";
   });
 }

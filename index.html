@@ -21,25 +21,46 @@
                 <input type="email" id="email" placeholder="Email*" required>
                 <input type="password" id="password" placeholder="Password*" required>
             </div>
-            <button type="submit" class="btn-signin">Sign in</button>
+            <div class="form-actions">
+                <!-- Thay a href bằng nút submit -->
+                <button type="submit" class="btn-signin">Sign in</button>
+            </div>
         </form>
         <p>Have an account <a href="dangnhap.html">Login</a></p>
     </div>
+
     <!--=================SCRIPT===========-->
     <script>
         function validateForm() {
-            let firstnname = document.getElementById("firstname").value.trim();
+            let firstname = document.getElementById("firstname").value.trim();
             let name = document.getElementById("name").value.trim();
             let phone = document.getElementById("phone").value.trim();
             let date = document.getElementById("date").value.trim();
-            let email = document.getElementByID("email").value.trim();
+            let email = document.getElementById("email").value.trim();
             let password = document.getElementById("password").value.trim();
+
             if (firstname === "" || name === "" || phone === "" || date === "" || email === "" || password === "") {
                 alert("Vui lòng nhập Firstname, Name, Phone Number, Date of birth, Email và Password!");
                 return false;
             }
-            alert("Đăng nhập thành công!");
-            return true;
+
+            // Lưu thông tin vào localStorage
+            const guestInfo = {
+                firstname: firstname,
+                name: name,
+                phone: phone,
+                date: date,
+                email: email,
+                password: password,
+                country: "🇻🇳 Vietnam" // mặc định
+            };
+            localStorage.setItem("guestInfo", JSON.stringify(guestInfo));
+
+            alert("Đăng ký thành công! Chuyển sang trang booking...");
+
+            // Chuyển sang trang book.html
+            window.location.href = "book.html";
+            return false; // ngăn form submit mặc định
         }
     </script>
 </body>

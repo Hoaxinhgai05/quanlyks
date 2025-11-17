@@ -587,7 +587,7 @@ button.service-btn:hover {
   transform: scale(1.05);
 }
 
-/* Bill Box */
+/* Bill Box – MẶC ĐỊNH HIỆN */
 .bill {
   position: fixed;
   right: 25px;
@@ -600,17 +600,18 @@ button.service-btn:hover {
   padding: 16px;
   font-size: 13px;
   line-height: 1.4;
-  opacity: 0;
-  transform: translateY(20px);
+  opacity: 1;                     /* ← mặc định HIỆN */
+  transform: translateY(0);        /* ← không lệch */
   transition: all 0.3s ease;
-  pointer-events: none;
+  pointer-events: all;             /* ← cho phép thao tác */
   z-index: 1100;
 }
 
-.bill.active {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: all;
+/* Trạng thái THU GỌN */
+.bill.collapsed {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
 }
 
 .bill h3 {
@@ -646,6 +647,7 @@ button.service-btn:hover {
   text-align: right;
   color: #7c6029;
 }
+
 
 /* Button & Status */
 .book-btn {

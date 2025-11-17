@@ -1,0 +1,583 @@
+/* Thiết lập màu sắc và font chữ */
+:root {
+    --primary-color: #A9A48F; /* Màu xanh ô liu / be */
+    --background-color: #EFEBE0; /* Màu nền cho thanh đặt phòng */
+    --light-bg-color: #E6E1D1; /* Màu be nhạt cho các nút và hình tròn */
+    --accent-color: #1a1a1a; /* Màu chữ chính */
+    --light-green: #e9f5e1; /* Màu xanh nhạt cho hình tròn phòng */
+    --light-yellow: #f5f5e1; /* Màu vàng nhạt cho hình tròn phòng */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: var(--accent-color);
+    background-color: #fff;
+}
+
+/* -------------------- 1. HEADER VÀ LOGO -------------------- */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #fff; 
+    height: 90px;
+}
+
+.header-left, .header-right, .logo-container {
+    flex-basis: 33.3%; 
+    display: flex;
+    align-items: center;
+}
+
+.header-left { justify-content: flex-start; }
+.header-right { justify-content: flex-end; }
+.logo-container { justify-content: center; flex-direction: column; } 
+
+.menu-toggle {
+    background: none;
+    border: none;
+    font-size: 26px;
+    cursor: pointer;
+    color: var(--accent-color);
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 2000;
+}
+
+
+/* Hiệu ứng xoay nhẹ khi mở */
+.menu-toggle.active {
+    transform: rotate(90deg);
+}
+
+.book-direct {
+    text-decoration: none;
+    color: var(--accent-color);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+/* --- Logo --- */
+.logo-text {
+    font-family: 'Dancing Script', cursive; 
+    font-size: 32px; 
+    font-weight: 400;
+    margin-top: 5px; 
+    letter-spacing: 1px;
+    color: var(--accent-color);
+}
+
+/* -------------------- 2. BOOKING BAR -------------------- */
+.booking-bar-wrapper {
+  background-color: var(--background-color);
+  padding: 20px 30px;
+}
+
+.booking-bar {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 15px;
+}
+
+.booking-item {
+  padding: 0;
+  flex-grow: 1;
+  min-width: 150px;
+}
+
+.online-info {
+  flex-grow: 0;
+  min-width: 180px;
+}
+
+.booking-item .label {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  margin-bottom: 5px;
+}
+
+.online-info .guarantee {
+  font-size: 14px;
+  color: var(--accent-color);
+}
+
+.input-field i {
+  color: var(--primary-color);
+  font-size: 18px;
+}
+/*-------Ô LỊCH -----------*/
+.input-field {
+  position: relative;
+  width: 100%;
+  background: none; 
+  border: none;     
+  padding: 0;       
+}
+
+.input-field input[type="text"],
+.input-field input[type="date"] {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 0; /* ô vuông */
+  padding: 8px 36px 8px 12px;
+  font-size: 14px;
+  color: var(--accent-color);
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.input-field i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primary-color);
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.find-room-btn {
+  flex-grow: 0;
+  background-color: var(--primary-color);
+  color: white;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  height: 40px;
+  min-width: 150px;
+}
+
+
+/* -------------------- SIDEBAR -------------------- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 220px;
+    height: 100%;
+    background: #A9A48F;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+    transition: left 0.35s ease;
+    z-index: 999;
+}
+
+.sidebar a {
+    color: #fff;
+    padding: 15px 20px;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+.sidebar a:hover {
+    background-color: #A9A48F;
+}
+
+.sidebar.active {
+    left: 0;
+}
+/* ----------------------- GUESTS BOX ---------------------- */
+.guests-dropdown {
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+}
+
+.guests-dropdown .field-label {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  margin-bottom: 5px;
+}
+
+.guests-wrapper {
+  position: relative; 
+  display: inline-block;
+  width: 100%;
+}
+
+.guests-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 10px 15px;
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  height: 40px;
+  cursor: pointer;
+  color: var(--accent-color);
+  font-size: 14px;
+}
+
+/* Popup giữ nguyên */
+.guests-popup {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  padding: 15px;
+  z-index: 1000;
+  min-width: 280px;
+}
+
+.room {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+}
+.control {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.control button {
+  padding: 4px 10px;
+  background: #f2f2f2;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  color: black;
+}
+.add-room, .done {
+  margin-top: 10px;
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.add-room { background: #f2f2f2; color: black; }
+.done { background: #A9A48F; color: #fff; }
+
+/* Style cho nút xóa phòng */
+.delete-room {
+  background: none;
+  border: none;
+  color: black;
+  font-size: 18px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.delete-room:hover {
+  color: black;
+}
+.room-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* -------------------- HERO IMAGE (TRANG CHỦ) -------------------- */
+
+.content {
+    padding: 0 30px;
+}
+
+.hero-image {
+    width: 100%;
+    /* Chiều cao tính toán: 100vh trừ đi chiều cao header và booking bar */
+    height: calc(100vh - 90px - 80px); 
+    overflow: hidden;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+
+/* -------------------------------------- */
+/* 3. MAIN IMAGE SECTION */
+/* -------------------------------------- */
+
+.main-image-section {
+    width: 100%;
+    position: relative;
+}
+
+.main-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.image-overlay-text {
+    position: absolute;
+    bottom: 10%; 
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-serif);
+    font-size: 60px;
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* -------------------------------------- */
+/* 4. ROOM OPTIONS (Đã sửa tiêu đề và mô tả) */
+/* -------------------------------------- */
+
+.room-options-section {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 5%;
+    text-align: center;
+}
+
+.section-title {
+    margin-bottom: 60px;
+}
+
+/* Tiêu đề mới với font viết tay */
+.signature-room-title {
+    font-family: var(--font-handwriting); /* Sử dụng font viết tay */
+    font-size: 60px; /* Cỡ chữ lớn hơn */
+    font-weight: 700; /* Đậm hơn */
+    margin-bottom: 20px; /* Tăng khoảng cách */
+    color: var(--color-primary-dark);
+}
+
+/* Khung nền vàng cho mô tả */
+.section-description-box {
+    background-color: #fcf9ee; /* Màu vàng nhạt giống ảnh khung.PNG */
+    padding: 30px 40px;
+    max-width: 800px;
+    margin: 0 auto 60px auto; /* Căn giữa và khoảng cách dưới */
+    border-radius: 5px; /* Bo góc nhẹ */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Bóng nhẹ */
+    text-align: center;
+}
+
+/* Mô tả với font viết tay */
+.section-description-script {
+    font-family: var(--font-handwriting); /* Sử dụng font viết tay */
+    font-size: 22px; /* Cỡ chữ lớn hơn */
+    color: var(--color-text-dark);
+    line-height: 1.8; /* Giãn dòng */
+}
+
+
+.room-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.room-detail-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.room-detail-row.reverse {
+    flex-direction: row-reverse;
+}
+
+.room-image-wrap {
+    width: 45%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.room-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.room-info {
+    width: 45%;
+    text-align: center;
+}
+
+.room-name {
+    font-family: var(--font-script);
+    font-size: 36px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.room-specs {
+    font-size: 16px;
+    color: var(--color-text-light);
+    margin-bottom: 20px;
+}
+.room-specs p {
+    margin: 5px 0;
+}
+
+.check-price-btn {
+    background-color: var(--color-highlight-btn);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.check-price-btn:hover {
+    background-color: #7a7a5c;
+}
+
+/* -------------------------------------- */
+/* MEDIA QUERIES (Responsive Design) */
+/* -------------------------------------- */
+
+@media (max-width: 1024px) {
+    /* Booking Bar */
+    .booking-bar {
+        flex-wrap: wrap;
+    }
+    .booking-item {
+        width: 50%;
+        border-bottom: 1px solid var(--color-border-subtle);
+        border-right: none;
+    }
+    .book-online-column {
+        width: 100%;
+        flex-basis: 100%;
+        text-align: center;
+        border-right: none !important;
+        /* Màu nền riêng cho responsive */
+        background-color: var(--color-search-bg-book); 
+    }
+    .check-in-column, .check-out-column, .gutes-column {
+        width: 50%;
+        flex-basis: 50%;
+        border-right: 1px solid var(--color-border-subtle);
+        background-color: var(--color-search-bg-main);
+    }
+    .check-out-column {
+        border-right: none;
+    }
+    .gutes-column {
+        border-right: none;
+        background-color: var(--color-search-bg-main); 
+    }
+    .find-room-btn {
+        width: 100%;
+        flex-grow: 1;
+        padding: 15px 30px;
+    }
+
+    /* Room Options */
+    .signature-room-title {
+        font-size: 45px;
+    }
+    .section-description-script {
+        font-size: 18px;
+    }
+    .room-detail-row, .room-detail-row.reverse {
+        flex-direction: column;
+    }
+    .room-image-wrap, .room-info {
+        width: 100%;
+    }
+    .room-info {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hotel-title-only {
+        font-size: 24px;
+        margin: 0;
+    }
+    .image-overlay-text {
+        font-size: 30px;
+        letter-spacing: 2px;
+    }
+    .check-in-column, .check-out-column, .gutes-column {
+        width: 100%;
+        flex-basis: 100%;
+        border-right: none !important;
+    }
+    .signature-room-title {
+        font-size: 35px;
+    }
+    .section-description-box {
+        padding: 20px;
+    }
+    .section-description-script {
+        font-size: 16px;
+    }
+}
+/* -------------------- 4.FOOTER -------------------- */
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 40px 60px;
+  background-color: #EFEBE0;
+  gap: 20px;
+}
+
+.footer-left .brand {
+  font-size: 26px;
+  font-family: "Great Vibes", cursive;
+  color: #444;
+}
+
+.footer-middle ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-middle ul li {
+  margin: 8px 0;
+}
+
+.footer-middle ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.footer-middle ul li a:hover {
+  color: #000000;
+}
+
+.footer-right h3 {
+  margin-bottom: 12px;
+  color: #333;
+}
+

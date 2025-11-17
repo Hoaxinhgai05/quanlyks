@@ -1,0 +1,301 @@
+/* -------------------- THIẾT LẬP CHUNG -------------------- */
+:root {
+    --main-font-serif: 'Playfair Display', serif; /* Font chữ chính, thanh lịch */
+    --main-font-sans: 'Roboto', sans-serif; /* Font chữ phụ, rõ ràng */
+    --text-color: #000;
+    --border-color: #000;
+    --header-spacing: 1.5rem;
+}
+
+body {
+    font-family: var(--main-font-sans);
+    color: var(--text-color);
+    background-color: #f5f4c9; /* Nền nhẹ bên ngoài hóa đơn */
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.invoice-container {
+    width: 100%;
+    max-width: 800px; /* Chiều rộng hóa đơn cố định */
+    padding: 30px;
+    background-color: #e9edd3;
+    border: 1px solid #e9edd3;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* -------------------- TIÊU ĐỀ VÀ LOGO -------------------- */
+
+.invoice-header {
+    text-align: center;
+    margin-bottom: var(--header-spacing);
+}
+
+.logo {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.logo-text {
+    font-family: var(--main-font-serif);
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    line-height: 1;
+}
+
+.company-name {
+    font-family: var(--main-font-sans);
+    font-size: 14px;
+    letter-spacing: 5px;
+    margin-bottom: 5px;
+}
+
+.invoice-title {
+    font-family: var(--main-font-serif);
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 7px;
+    margin-top: 10px;
+}
+
+.divider-line {
+    border-bottom: 1px solid var(--border-color);
+    margin: 15px 0;
+}
+
+.top-line {
+    margin-top: 5px;
+    margin-bottom: 30px;
+}
+
+/* -------------------- THÔNG TIN CHI TIẾT HÓA ĐƠN -------------------- */
+
+.invoice-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    line-height: 1.8;
+}
+
+.invoice-details .col {
+    width: 48%;
+    font-size: 14px;
+}
+
+.invoice-details .right-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Tái tạo 2 cột nhỏ bên phải */
+    column-gap: 20px;
+}
+
+.invoice-details strong {
+    font-weight: 400; /* Thông tin trong ảnh mẫu là font mảnh */
+}
+
+
+/* -------------------- BẢNG NỘI DUNG -------------------- */
+
+.invoice-table-section {
+    margin-top: 20px;
+    min-height: 350px; /* Giữ chiều cao cố định như ảnh mẫu */
+}
+
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    table-layout: fixed;
+}
+
+.invoice-table thead th {
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 5px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+}
+
+.invoice-table tbody td {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    padding: 10px 5px;
+    vertical-align: top;
+    height: 60px; /* Giúp các hàng có chiều cao tương đối bằng nhau */
+}
+
+.invoice-table tbody tr:first-child td {
+    border-top: none;
+}
+.invoice-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Cột số thứ tự và ngày */
+.col-num { width: 5%; text-align: center; }
+.col-date { width: 15%; }
+.col-room { width: 15%; }
+.col-content { width: 30%; }
+.col-sl { width: 5%; text-align: center; }
+.col-price { width: 15%; text-align: right; }
+.col-total { width: 15%; text-align: right; border-right: none !important; }
+
+/* Bỏ đường viền cho cột đầu và cuối */
+.invoice-table thead th:first-child,
+.invoice-table tbody td:first-child {
+    border-left: none;
+}
+
+.invoice-table thead th:last-child {
+    border-right: none;
+}
+
+/* Điều chỉnh nội dung chi tiết */
+.col-content {
+    line-height: 1.4;
+    padding-left: 15px;
+}
+.col-content br {
+    line-height: 0.5;
+}
+
+/* Giữ bố cục trống */
+.empty-row-filler td {
+    border: none !important;
+    height: 150px; /* Chiều cao trống để cân bằng */
+}
+
+/* Đường phân cách dưới bảng */
+.bottom-table-line {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* -------------------- TỔNG KẾT VÀ THANH TOÁN -------------------- */
+
+.invoice-summary {
+    width: 40%; /* Chỉ chiếm 40% chiều rộng bên phải */
+    margin-left: auto;
+    font-family: var(--main-font-sans);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    font-size: 14px;
+    border-bottom: 1px dotted #ccc;
+}
+
+.summary-row:first-child {
+    font-weight: 700;
+}
+
+.summary-row .label {
+    letter-spacing: 0.5px;
+}
+
+.summary-row .amount {
+    font-weight: 700;
+}
+
+.total {
+    font-size: 15px;
+}
+
+.payment-row {
+    margin-top: 10px;
+    font-weight: 700;
+    border-bottom: none;
+}
+
+.change-row {
+    margin-bottom: 30px;
+    font-weight: 700;
+    border-bottom: none;
+}
+
+
+/* -------------------- CHỮ KÝ VÀ MÃ QR -------------------- */
+
+.invoice-footer {
+    padding-top: 10px;
+}
+
+.signatures {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    font-size: 13px;
+}
+
+.signature-col {
+    width: 33%;
+}
+
+.signature-col p {
+    margin: 5px 0;
+}
+
+.bank-info {
+    text-align: center;
+}
+
+.qr-code {
+    width: 100px;
+    height: 100px;
+    background-color: #000;
+    margin: 15px auto 10px auto;
+    /* Giả lập hình ảnh mã QR */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 8px;
+    padding: 5px;
+}
+
+.name {
+    margin-top: 80px !important; /* Tạo khoảng trống cho chữ ký */
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* Responsive cơ bản */
+@media (max-width: 600px) {
+    .invoice-container {
+        padding: 15px;
+    }
+    .invoice-details {
+        flex-direction: column;
+    }
+    .invoice-details .col {
+        width: 100%;
+    }
+    .invoice-details .right-col {
+        grid-template-columns: 1fr;
+        margin-top: 15px;
+    }
+    .invoice-summary {
+        width: 100%;
+    }
+    .signatures {
+        flex-direction: column;
+    }
+    .signature-col {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .name {
+        margin-top: 20px !important;
+    }
+    .qr-code {
+        margin-left: 0;
+        margin-right: auto;
+    }
+}

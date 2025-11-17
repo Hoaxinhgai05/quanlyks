@@ -396,31 +396,6 @@ body {
   font-weight: bold;
 }
 
-.booking-for {
-  margin-bottom: 20px;
-}
-
-.booking-for button {
-  background: #f8f6ee;
-  border: 1px solid #ccc;
-  padding: 8px 18px;
-  border-radius: 20px;
-  cursor: pointer;
-  margin-right: 10px;
-  transition: 0.3s;
-  font-size: 14px;
-}
-
-.booking-for button:hover {
-  background: #e7dfca;
-}
-
-.booking-for .active {
-  background: #d8c9a1;
-  color: #fff;
-  border-color: #b8a26e;
-}
-
 .form-row {
   display: flex;
   gap: 20px;

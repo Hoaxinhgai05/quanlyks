@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hóa Đơn Khách Sạn - Prestige Manor</title>
+    <!-- Tái tạo font chữ serif thanh lịch và font sans-serif hiện đại -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="hoadon.css">
+</head>
+<body>
+    <div class="invoice-container">
+
+        <!-- TIÊU ĐỀ HÓA ĐƠN VÀ LOGO -->
+        <header class="invoice-header">
+            <!-- Logo PM -->
+            <div class="logo">
+                <!-- Tái tạo chữ PM bằng font Playfair Display đậm -->
+                <span class="logo-text">P M</span>
+            </div>
+            <p class="company-name">PRESTIGE MANOR</p>
+            <h1 class="invoice-title">I N V O I C E</h1>
+        </header>
+
+        <!-- ĐƯỜNG PHÂN CÁCH TRANG TRÍ -->
+        <div class="divider-line top-line"></div>
+
+        <!-- THÔNG TIN CHUNG CỦA HÓA ĐƠN -->
+        <section class="invoice-details">
+            <div class="col left-col">
+                <p><strong>Số hoá đơn:</strong></p>
+                <p><strong>Khách hàng:</strong></p>
+                <p><strong>Ngày đặt phòng:</strong></p>
+                <p><strong>Ngày trả phòng:</strong></p>
+                <p><strong>Loại phòng:</strong></p>
+            </div>
+            <div class="col right-col">
+                <p><strong>Ngày:</strong></p>
+                <p><strong>Mã đặt phòng:</strong></p>
+                <p><strong>Phòng:</strong></p>
+                <p><strong>Thời gian đến:</strong></p>
+                <p><strong>Thời gian trả:</strong></p>
+                <p><strong>Số đêm lưu trú:</strong></p>
+            </div>
+        </section>
+
+        <!-- ĐƯỜNG PHÂN CÁCH -->
+        <div class="divider-line"></div>
+
+        <!-- BẢNG NỘI DUNG CHI TIẾT -->
+        <section class="invoice-table-section">
+            <table class="invoice-table">
+                <thead>
+                    <tr>
+                        <th class="col-num">#</th>
+                        <th class="col-date">NGÀY</th>
+                        <th class="col-room">PHÒNG</th>
+                        <th class="col-content">NỘI DUNG</th>
+                        <th class="col-sl">SL</th>
+                        <th class="col-price">ĐƠN GIÁ</th>
+                        <th class="col-total">THÀNH TIỀN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dòng 1 -->
+                    <tr>
+                        <td class="col-num">1</td>
+                        <td class="col-date">17/11/2025</td>
+                        <td class="col-room"></td>
+                        <td class="col-content">Tiền phòng<br>Bao gồm bữa sáng</td>
+                        <td class="col-sl">1</td>
+                        <td class="col-price">1.399.000VND</td>
+                        <td class="col-total">1.399.000VND</td>
+                    </tr>
+                    <!-- Dòng 2 -->
+                    <tr>
+                        <td class="col-num">2</td>
+                        <td class="col-date">18/11/2025</td>
+                        <td class="col-room"></td>
+                        <td class="col-content">Tiền phòng<br>Bao gồm bữa sáng</td>
+                        <td class="col-sl">1</td>
+                        <td class="col-price">1.399.000VND</td>
+                        <td class="col-total">1.399.000VND</td>
+                    </tr>
+                    <!-- Dòng trống để giữ bố cục (tái tạo như ảnh mẫu) -->
+                    <tr class="empty-row-filler">
+                        <td colspan="7"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ĐƯỜNG PHÂN CÁCH -->
+        <div class="divider-line bottom-table-line"></div>
+
+        <!-- TỔNG KẾT VÀ THANH TOÁN -->
+        <section class="invoice-summary">
+            <div class="summary-row">
+                <span class="label">TỔNG TIỀN</span>
+                <span class="amount total">2.798.000VND</span>
+            </div>
+            <div class="summary-row payment-row">
+                <span class="label">THANH TOÁN</span>
+                <span class="amount paid">2.798.000VND</span>
+            </div>
+            <div class="summary-row change-row">
+                <span class="label">TRẢ LẠI</span>
+                <span class="amount change">0 VND</span>
+            </div>
+        </section>
+
+        <!-- CHỮ KÝ VÀ MÃ QR -->
+        <section class="invoice-footer">
+            <div class="signatures">
+                <div class="signature-col thu-ngan">
+                    <p>Thu ngân</p>
+                    <p class="name">Nguyễn Thị A</p>
+                </div>
+                <div class="signature-col bank-info">
+                    <p>Bank Name: PHẠM THỊ HOA</p>
+                    <p>STK: 9888 8111 1200 5</p>
+                    <!-- Tái tạo Mã QR bằng placeholder -->
+                    <div class="qr-code">
+                                            </div>
+                </div>
+                <div class="signature-col khach-hang">
+                    <p>Khách hàng</p>
+                    <p class="name">Nguyễn Văn B</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</body>
+</html>

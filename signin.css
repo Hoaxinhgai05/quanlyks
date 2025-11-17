@@ -9,6 +9,7 @@
       justify-content: center;
       align-items: center;
     }
+
     /* -----------SIGN IN BOX----------- */
     .signin-box {
       width: 420px;
@@ -49,8 +50,16 @@
       border-color: #f5ffda;
       outline: none;
     }
+
     /* --------NÚT SIGN IN------------ */
+    .form-actions {
+      grid-column: span 2;
+      /* Để nút nằm full chiều ngang */
+    }
+
     .btn-signin {
+      display: block;
+      text-align: center;
       margin-top: 18px;
       width: 100%;
       padding: 12px;
